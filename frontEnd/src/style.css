@@ -64,6 +64,10 @@ button:focus-visible {
   padding: 2rem;
   text-align: center;
 }
+.Gridlayout{
+  display: flex;
+  column-gap: 10px;
+}
 
 @media (prefers-color-scheme: light) {
   :root {

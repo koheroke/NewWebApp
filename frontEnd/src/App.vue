@@ -1,8 +1,9 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import Topbar from "@/components/AtomicDesign//Organisms/Topbar/src/Topbar.vue";
+</script>
 
 <template>
-  <Button title="aaa"></Button>
-  <Search></Search>
+  <Topbar></Topbar>
 </template>
 
 <style scoped>
