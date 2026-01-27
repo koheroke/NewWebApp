@@ -15,8 +15,8 @@ import { reactive, ref } from "vue";
 const searchText = ref();
 const fromConfig = reactive({
   numberOfLines: 1,
-  size: { width: 200, height: 24 },
-  placeholder: "サイトを検索",
+  width: 200,
+  placeholder: "タグで募集を検索",
 });
 </script>
 <style scoped>

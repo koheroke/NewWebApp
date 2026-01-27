@@ -1,14 +1,13 @@
 <template>
   <div class="Gridlayout border">
-    <Label label="サイト名" class="title"></Label>
+    <Label label="投票トーク" class="title"></Label>
     <div class="pageTransitionButtons Gridlayout">
-      <Button title="Page" class="simplicityButton"></Button>
-      <Button title="Page" class="simplicityButton"></Button>
-      <Button title="Page" class="simplicityButton"></Button>
-      <Button title="Page" class="simplicityButton"></Button>
-      <Button title="Page" class="simplicityButton"></Button>
+      <Button title="Profile" class="simplicityButton"></Button>
+      <Button title="history" class="simplicityButton"></Button>
+      <Button title="create" class="simplicityButton"></Button>
+      <Button title="Recruitment" class="simplicityButton"></Button>
     </div>
-    <Search></Search>
+    <Search class="right-align-start"></Search>
   </div>
 </template>
 <script lang="ts" setup>
@@ -23,9 +22,16 @@ import Label from "@/components/AtomicDesign/Atoms/Label/Label.ts";
   padding-top: 20px;
 }
 .border {
-  border: 3px solid black;
-  padding: 10px;
   width: 100%;
+  padding: 0 20px 20px 20px;
   height: auto;
+  box-sizing: border-box;
+}
+.title {
+  font-weight: 900;
+  color: rgb(0, 0, 0);
+  padding: 20px;
+  font-size: large;
+  font-weight: bold;
 }
 </style>

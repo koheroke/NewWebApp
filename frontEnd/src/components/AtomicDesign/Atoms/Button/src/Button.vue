@@ -30,6 +30,7 @@ defineProps({
 }
 
 .simplicityButton {
+  font-weight: 900;
   color: #232323;
   &:hover {
     color: #5a5a5a;

@@ -1,9 +1,10 @@
 <script lang="ts" setup>
-import Topbar from "@/components/AtomicDesign//Organisms/Topbar/src/Topbar.vue";
+// import CleateRecruitmentPage from "@/components/AtomicDesign/Peges/CleateRecruitmentPage/CleateRecruitmentPage";
+import RecruitmentListPage from "@/components/AtomicDesign/Peges/RecruitmentListPage/RecruitmentListPage";
 </script>
-
 <template>
-  <Topbar></Topbar>
+  <!-- <CleateRecruitmentPage></CleateRecruitmentPage> -->
+  <RecruitmentListPage></RecruitmentListPage>
 </template>
 
 <style scoped>

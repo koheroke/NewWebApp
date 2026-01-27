@@ -9,9 +9,7 @@
   ></textarea>
 </template>
 <script lang="ts">
-import { defineComponent, computed, type PropType } from "vue";
-import FormHook from "@/components/Hooks/web/formHook";
-import type FormFormat from "@/components/Interfaces/web/formFormat";
+import { defineComponent, computed } from "vue";
 export default defineComponent({
   name: "SearchForm",
   props: {
@@ -19,26 +17,22 @@ export default defineComponent({
     modelValue: String,
     placeholder: String,
     numberOfLines: { type: Number, default: 1 },
-    size: {
-      type: Object as PropType<{ width?: number; height?: number }>,
-      default: () => ({}),
-    },
+    width: Number,
   },
   emits: ["update:modelValue", "search"],
   setup(props, { emit }) {
-    const formHook = new FormHook();
-    const lines = props.numberOfLines ?? 1;
-    const totalHeight = props.size?.height;
-    const rowHeight = totalHeight ? totalHeight / lines : 20;
-    const fontSizeRatio = 0.7;
-    const fontSize = rowHeight * fontSizeRatio;
-    const isSingleLine = lines === 1 ? true : false;
+    const lineHeight = 25;
+    const fontRatio = 0.7;
+    const fontSize = lineHeight * fontRatio;
+    const isSingleLine = props.numberOfLines === 1 ? true : false;
     const computedStyle = computed(() => {
       return {
-        width: props.size?.width ? `${props.size.width}px` : "100%",
-        height: props.size?.height ? `${props.size.height}px` : "auto",
-        lineHeight: rowHeight + "px",
+        width: props.width ? `${props.width}px` : "100%",
+        height: props.numberOfLines
+          ? `${props.numberOfLines * lineHeight}px`
+          : "auto",
         fontSize: `${fontSize}px`,
+        lineHeight: lineHeight + "px",
         //改行に関する設定
         whiteSpace: isSingleLine ? "nowrap" : "pre-wrap",
         overflowX: isSingleLine ? "auto" : "hidden",
@@ -54,13 +48,7 @@ export default defineComponent({
       }
       emit("update:modelValue", value);
     };
-    const handleConfirm = () => {
-      console.log(props.modelValue);
-      formHook.setform({
-        name: props.formName,
-        data: props.modelValue,
-      } as FormFormat);
-    };
+    const handleConfirm = () => {};
     return {
       handleConfirm,
       computedStyle,
