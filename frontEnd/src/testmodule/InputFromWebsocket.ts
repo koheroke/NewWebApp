@@ -1,7 +1,6 @@
-import type RecruitmentCard_interface from "@/components/Interfaces/web/RecruitmentCard_interface";
+import type recruitmentCard from "@/components/Interfaces/web/recruitmentCard";
 // ** //テストケース // ** //
-const testData: RecruitmentCard_interface[] = [
-// --- 追加分 (20個) ---
+const testData: recruitmentCard[] = [
   {
     name: "朝活カフェ読書会",
     time: "03月10日 07:30〜09:00",
@@ -142,7 +141,11 @@ const testData: RecruitmentCard_interface[] = [
     detail: "地域の公園を綺麗にしましょう。軍手とゴミ袋は支給します。",
     tag: ["ボランティア", "地域貢献", "朝"],
   }
-];
+].map(item => ({
+  ...item,
+  id: crypto.randomUUID() 
+}));
+;
 export function getTestData(){
    return testData
 }

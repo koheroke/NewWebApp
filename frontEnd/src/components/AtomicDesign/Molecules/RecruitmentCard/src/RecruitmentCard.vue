@@ -8,7 +8,7 @@
   </div>
   <div class="Gridlayout tags gap">
     <Label label="タグ:"></Label>
-    <div v-for="tag in props.tag">
+    <div v-for="tag in props.tag" :key="tag">
       <Label :label="tag"></Label>
     </div>
   </div>
@@ -31,6 +31,6 @@
 <script lang="ts" setup>
 import Button from "@/components/AtomicDesign/Atoms/Button/Button.ts";
 import Label from "@/components/AtomicDesign/Atoms/Label/Label";
-import type RecruitmentCard_interface from "@/components/Interfaces/web/RecruitmentCard_interface";
-const props = defineProps<RecruitmentCard_interface>();
+import type recruitmentCard from "@/components/Interfaces/web/recruitmentCard";
+const props = defineProps<recruitmentCard>();
 </script>

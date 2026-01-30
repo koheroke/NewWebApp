@@ -2,7 +2,10 @@
   <div class="parent">
     <div class="list">
       <Button title="募集一覧" class="defaultButton"></Button>
-      <div v-for="RecruitmentData in RecruitmentDatas">
+      <div
+        v-for="RecruitmentData in RecruitmentDatas"
+        :key="RecruitmentData.name"
+      >
         <RecruitmentCard v-bind="RecruitmentData"></RecruitmentCard>
       </div>
       <Button title="<さらに読み込む>" class="defaultButton"></Button>
@@ -11,10 +14,10 @@
 </template>
 <script lang="ts" setup>
 import Button from "@/components/AtomicDesign/Atoms/Button/Button.ts";
-import RecruitmentCard from "@/components/AtomicDesign/Molecules/RecruitmentCard/src/RecruitmentCard.vue";
 import { getTestData } from "@/testmodule/InputFromWebsocket.ts";
-import type RecruitmentCard_interface from "@/components/Interfaces/web/RecruitmentCard_interface";
+import type recruitmentCard from "@/components/Interfaces/web/recruitmentCard";
+import RecruitmentCard from "@/components/AtomicDesign/Molecules/RecruitmentCard/src/RecruitmentCard.vue";
 import { ref } from "vue";
-const RecruitmentDatas = ref<RecruitmentCard_interface[]>([]);
+const RecruitmentDatas = ref<recruitmentCard[]>([]);
 RecruitmentDatas.value = getTestData();
 </script>

@@ -2,10 +2,11 @@
   <div class="Gridlayout border">
     <Label label="投票トーク" class="title"></Label>
     <div class="pageTransitionButtons Gridlayout">
-      <Button title="Profile" class="simplicityButton"></Button>
-      <Button title="history" class="simplicityButton"></Button>
-      <Button title="create" class="simplicityButton"></Button>
-      <Button title="Recruitment" class="simplicityButton"></Button>
+      <Button title="/Profile" class="simplicityButton"></Button>
+      <Button title="/tags" class="simplicityButton"></Button>
+      <Button title="/history" class="simplicityButton"></Button>
+      <Button title="/create" class="simplicityButton"></Button>
+      <Button title="/Recruitment" class="simplicityButton"></Button>
     </div>
     <Search class="right-align-start"></Search>
   </div>

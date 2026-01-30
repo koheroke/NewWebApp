@@ -1,0 +1,1 @@
+/Users/azumakoutaira/workspace/vueApp/backend/src/interfaces/recruitmentCard.ts
