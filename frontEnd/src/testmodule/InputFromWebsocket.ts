@@ -1,6 +1,6 @@
-import type recruitmentCard from "@/components/Interfaces/web/recruitmentCard";
+import type { RecruitmentCardType }  from "@/components/Interfaces/web/recruitmentCard";
 // ** //テストケース // ** //
-const testData: recruitmentCard[] = [
+const testData: RecruitmentCardType[] = [
   {
     name: "朝活カフェ読書会",
     time: "03月10日 07:30〜09:00",

@@ -31,6 +31,6 @@
 <script lang="ts" setup>
 import Button from "@/components/AtomicDesign/Atoms/Button/Button.ts";
 import Label from "@/components/AtomicDesign/Atoms/Label/Label";
-import type recruitmentCard from "@/components/Interfaces/web/recruitmentCard";
-const props = defineProps<recruitmentCard>();
+import type { RecruitmentCardType } from "@/components/Interfaces/web/recruitmentCard";
+const props = defineProps<RecruitmentCardType>();
 </script>

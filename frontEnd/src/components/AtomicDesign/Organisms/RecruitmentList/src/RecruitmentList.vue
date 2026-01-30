@@ -15,9 +15,9 @@
 <script lang="ts" setup>
 import Button from "@/components/AtomicDesign/Atoms/Button/Button.ts";
 import { getTestData } from "@/testmodule/InputFromWebsocket.ts";
-import type recruitmentCard from "@/components/Interfaces/web/recruitmentCard";
+import type { RecruitmentCardType } from "@/components/Interfaces/web/recruitmentCard";
 import RecruitmentCard from "@/components/AtomicDesign/Molecules/RecruitmentCard/src/RecruitmentCard.vue";
 import { ref } from "vue";
-const RecruitmentDatas = ref<recruitmentCard[]>([]);
+const RecruitmentDatas = ref<RecruitmentCardType[]>([]);
 RecruitmentDatas.value = getTestData();
 </script>

@@ -1,11 +1,11 @@
-import type { RecruitmentCard, Id, UpdatePayload } from '@/interfaces/recruitmentCard.ts'
+import type { RecruitmentCardType, Id, UpdatePayload } from '@/interfaces/recruitmentCard.ts'
 const MngRecruitment = {
-  recruitments : [] as RecruitmentCard[],
-  extraction(key: keyof RecruitmentCard){
+  recruitments : [] as RecruitmentCardType[],
+  extraction(key: keyof RecruitmentCardType){
     const extraction = this.recruitments.map(card => card[key]);
     return extraction
   },
-  add(recruitmentCard : RecruitmentCard){
+  add(recruitmentCard : RecruitmentCardType){
     if(!this.check(recruitmentCard.id)){
       return false
     }
@@ -25,11 +25,12 @@ const MngRecruitment = {
       return false;
     }
     this.recruitments.splice(index, 1);
-    return true;
+    return index;
   },
   update(data:UpdatePayload){
     const index = this.recruitments.findIndex(card => card.id === data.id); 
     this.recruitments[index] = { ...this.recruitments[index], ...data };
+    return index
   },
   request(){
     return this.recruitments 

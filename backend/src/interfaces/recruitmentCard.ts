@@ -1,4 +1,4 @@
-export interface RecruitmentCard{
+export interface RecruitmentCardType{
   name: string,
   time: string,
   people: string,
@@ -7,12 +7,14 @@ export interface RecruitmentCard{
   id: string,
 }
 
-export type Id = RecruitmentCard['id'];
+export type Id = RecruitmentCardType['id'];
 
 
 type AtLeastOne<T> = {
     [K in keyof T]: Pick<T, K> & Partial<T>
   }[keyof T];
   
-type CardWithoutId = Omit<RecruitmentCard, 'id'>;
-export type UpdatePayload = { id: RecruitmentCard['id'] } & AtLeastOne<CardWithoutId>;
+type CardWithoutId = Omit<RecruitmentCardType, 'id'>;
+export type UpdatePayload = { id: RecruitmentCardType['id'] } & AtLeastOne<CardWithoutId>;
+
+// ln -s /Users/azumakoutaira/workspace/vueApp/backend/src/interfaces/communication.ts communication.ts

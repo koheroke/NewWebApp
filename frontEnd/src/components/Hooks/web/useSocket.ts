@@ -1,16 +1,49 @@
 import io from "socket.io-client"; 
-import type recruitmentCard from "@/components/Interfaces/web/recruitmentCard";
-import type UpdatePayload from "@/components/Interfaces/web/recruitmentCard";
-type Id = recruitmentCard['id'];
-const socket = io("http://localhost:3000"); 
-socket.on("create_recruitment_post", (data :recruitmentCard) => {}) 
-socket.on("update_recruitment_post", (data :UpdatePayload) => {}) 
-socket.on("delete_recruitment_post", (data :Id) => {}) 
-socket.on("request_recruitment_post", (data :recruitmentCard[]) => {}) 
+import type {RecruitmentCardType ,UpdatePayload }  from "@/components/Interfaces/web/recruitmentCard";
+import { backendUrl } from "@/components/Hooks/web/env";
+const socket = io(backendUrl); 
+import { ref } from 'vue';
+export const RecruitmentCards = ref();
+socket.on("create_recruitment_post", (data :string) => {  
+  const RecruitmentCard = JSON.parse(data)
+  create_recruitment_post(RecruitmentCard);
+}) 
+socket.on("update_recruitment_post", (data :string) => {
+  const updateRecruitment = JSON.parse(data).data
+  const index = JSON.parse(data).index
+
+  update_recruitment_post(updateRecruitment,index);
+}) 
+socket.on("delete_recruitment_post", (data :number) => {
+ delete_recruitment_post(data)
+}) 
+socket.on("request_recruitment_post", (data :string) => {
+ const RecruitmentCards = JSON.parse(data)
+ request_recruitment_post(RecruitmentCards);
+}) 
 
 
+const create_recruitment_post =(RecruitmentCard:RecruitmentCardType)=>{
+  RecruitmentCards.value.push(RecruitmentCard);
+}
+const update_recruitment_post =(updateRecruitment:UpdatePayload, index:number)=>{
+  RecruitmentCards.value[index] = { ...RecruitmentCards.value[index], ...updateRecruitment };
+}
+const delete_recruitment_post =(index :number)=>{
+  RecruitmentCards.value.splice(index, 1);
+}
+const request_recruitment_post =(recruitmentCard:RecruitmentCardType[])=>{
+  RecruitmentCards.value = recruitmentCard;
+}
 
-
+// socket.emit("create_recruitment", {
+// })
+// socket.emit("update_recruitment", {
+// })
+// socket.emit("delete_recruitment", {
+// })
+// socket.emit("request_recruitment", {
+// })
 
       // create_recruitment
 
@@ -29,3 +62,4 @@ socket.on("request_recruitment_post", (data :recruitmentCard[]) => {})
       // delete_recruitment_post
 
       // request_recruitment_post
+
