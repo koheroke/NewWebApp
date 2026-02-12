@@ -1,7 +1,7 @@
 import { Server, Socket } from 'socket.io';
-import { MngRecruitment } from '@/hooks/MngRecruitment'
-import type { RecruitmentCardType, Id, UpdatePayload } from '@/interfaces/recruitmentCard.ts'
-const mngRecruitment = new MngRecruitment()
+import MngRecruitment from '@/hooks/MngRecruitment'
+import type { RecruitmentCardType, Id, UpdatePayload } from '@/interfaces/recruitmentCard'
+const mngRecruitment =  MngRecruitment
 
 const create_recruitment = (socket : Socket, data : RecruitmentCardType) => {
   const duplication = mngRecruitment.add(data)
@@ -24,7 +24,11 @@ const delete_recruitment = (socket : Socket, data : Id) => {
   socket.broadcast.emit('delete_recruitment_post', index);
 }
 const request_recruitment = (socket : Socket) => {
-  socket.emit('request_recruitment_post', JSON.stringify(mngRecruitment.recruitments()));
+  socket.emit('request_recruitment_post', JSON.stringify(mngRecruitment.request()));
+}
+
+const joinchat =(socket:Socket,id:Id)=>{
+
 }
 
 export const registerSocketHandlers = (io: Server) => {
@@ -41,5 +45,8 @@ export const registerSocketHandlers = (io: Server) => {
     socket.on('request_recruitment', () => {
       request_recruitment(socket)
     });
+    socket.on('joinChat',(id: Id)=>{
+      joinchat(socket,id)
+    })
   });
 };

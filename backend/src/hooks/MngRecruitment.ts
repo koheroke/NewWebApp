@@ -1,4 +1,5 @@
-import type { RecruitmentCardType, Id, UpdatePayload } from '@/interfaces/recruitmentCard.ts'
+import type { RecruitmentCardType, Id, UpdatePayload } from '@/interfaces/recruitmentCard'
+import { getTestData } from "@/testmodule/InputfromWebsocket"
 const MngRecruitment = {
   recruitments : [] as RecruitmentCardType[],
   extraction(key: keyof RecruitmentCardType){
@@ -37,3 +38,4 @@ const MngRecruitment = {
   }
 }
 export default MngRecruitment
+MngRecruitment.recruitments = getTestData()

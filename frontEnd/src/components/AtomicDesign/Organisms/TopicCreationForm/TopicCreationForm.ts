@@ -1,3 +1,3 @@
-import TopicCreationForm from './src/TopicCreationForm.vue'
-export { TopicCreationForm }
-export default TopicCreationForm
+import TopicCreationfrom from './src/TopicCreationForm.vue'
+export { TopicCreationfrom }
+export default TopicCreationfrom

@@ -1,10 +1,8 @@
 <script lang="ts" setup>
-// import CleateRecruitmentPage from "@/components/AtomicDesign/Peges/CleateRecruitmentPage/CleateRecruitmentPage";
-import RecruitmentListPage from "@/components/AtomicDesign/Peges/RecruitmentListPage/RecruitmentListPage";
+import { Main } from "@/components/AtomicDesign/Peges/Main/Main";
 </script>
 <template>
-  <!-- <CleateRecruitmentPage></CleateRecruitmentPage> -->
-  <RecruitmentListPage></RecruitmentListPage>
+  <Main></Main>
 </template>
 
 <style scoped>

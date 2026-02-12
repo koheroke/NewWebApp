@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "NodeNext",
+    "module": "ESNext",         
+    "moduleResolution": "Bundler",
     "strict": true,
     "verbatimModuleSyntax": true,
     "skipLibCheck": true,
@@ -14,8 +15,7 @@
     "baseUrl": ".",  
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
   },
-  "exclude": ["node_modules"]
-  
+  "exclude": ["node_modules"],
 }

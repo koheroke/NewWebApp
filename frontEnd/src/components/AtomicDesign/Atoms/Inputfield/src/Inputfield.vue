@@ -1,0 +1,93 @@
+<template>
+  <el-input
+    v-model="fromData"
+    :type="fromType.fromType"
+    :autosize="autosizeConfig"
+    :placeholder="fromType.placeholder"
+    :input-style="inputInternalStyle"
+    class="custom-round-input"
+    @keydown.enter.exact="onEnterKey"
+    @keydown.enter.shift.exact="onShiftEnterKey"
+    resize="none"
+  />
+</template>
+
+<script setup lang="ts">
+import { computed } from "vue";
+import { ElInput } from "element-plus";
+import {
+  fromConfig,
+  defaultConfig,
+  type inputfromConfig,
+  type ConfigKey,
+} from "@/components/Hooks/web/formConfig";
+import "element-plus/dist/index.css";
+const propsData = defineProps<
+  Partial<inputfromConfig> & { configType: ConfigKey }
+>();
+const props = computed(() => {
+  return Object.fromEntries(
+    Object.entries(propsData).filter(([_, value]) => value !== undefined),
+  );
+});
+
+const fromData = defineModel<string>({ default: "" });
+const type: ConfigKey = props.value.configType;
+const fromType = {
+  ...defaultConfig,
+  ...{ ...fromConfig[type], ...props.value },
+};
+const autosizeConfig = computed(() => {
+  if (fromType.resize === false) return false;
+  return { minRows: fromType.numberOfLines, maxRows: 10 };
+});
+const newLineConfig = computed(() => {
+  if (fromType.newLine === false) return false;
+});
+const fontRadius = 0.7;
+const lineHeight = 25;
+const fontSize = lineHeight * fontRadius;
+const fromHeight = lineHeight * fromType.numberOfLines;
+
+const inputInternalStyle = computed(
+  () =>
+    ({
+      width: fromType.width ? `${fromType.width}px` : "flex: 1",
+      fontSize: `${fontSize}px`,
+      lineHeight: `${lineHeight}px`,
+      height: autosizeConfig.value === false ? `${fromHeight}px` : "auto",
+    }) as const,
+);
+
+const handleEnter = (value: string) => {
+  let val = value;
+  if (fromType.numberOfLines === 1) {
+    val = value.replace(/\n/g, "");
+  }
+  fromData.value = val;
+};
+
+const onEnterKey = (e: KeyboardEvent | Event) => {
+  if (e.isComposing) return;
+  e.preventDefault();
+  handleEnter(fromData.value);
+};
+
+const onShiftEnterKey = (e: Event) => {
+  if (newLineConfig.value === false && autosizeConfig.value === false) {
+    e.preventDefault();
+    handleEnter(fromData.value);
+  } else {
+  }
+};
+</script>
+
+<style scoped>
+.custom-round-input {
+  background-color: transparent !important;
+}
+.custom-round-input :deep(.el-input__wrapper),
+.custom-round-input :deep(.el-textarea__inner) {
+  border-radius: 10px !important;
+}
+</style>

@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
+    "element-plus": "^2.13.2",
     "pinia": "^3.0.4",
     "socket.io-client": "^4.8.3",
     "tailwindcss": "^4.1.18",
     "vue": "^3.5.24",
+    "vue-resizable-panels": "^0.0.1",
     "vue-router": "^4.6.4",
     "vuetify": "^3.11.6"
   },

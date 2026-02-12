@@ -1,0 +1,40 @@
+import { getTestData } from "@/testmodule/InputfromWebsocket";
+const MngRecruitment = {
+  recruitments: [],
+  extraction(key) {
+    const extraction = this.recruitments.map((card) => card[key]);
+    return extraction;
+  },
+  add(recruitmentCard) {
+    if (!this.check(recruitmentCard.id)) {
+      return false;
+    }
+    this.recruitments.push(recruitmentCard);
+  },
+  check(id) {
+    //**idの重複チェック */
+    const allId = this.extraction("id");
+    if (allId.includes(id)) {
+      return false;
+    }
+    return true;
+  },
+  delete(id) {
+    const index = this.recruitments.findIndex((card) => card.id === id);
+    if (index === -1) {
+      return false;
+    }
+    this.recruitments.splice(index, 1);
+    return index;
+  },
+  update(data) {
+    const index = this.recruitments.findIndex((card) => card.id === data.id);
+    this.recruitments[index] = { ...this.recruitments[index], ...data };
+    return index;
+  },
+  request() {
+    return this.recruitments;
+  },
+};
+export default MngRecruitment;
+MngRecruitment.recruitments = getTestData();

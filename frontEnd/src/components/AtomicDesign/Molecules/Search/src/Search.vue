@@ -1,26 +1,46 @@
 <template>
   <div class="Gridlayout">
-    <div class="labelAndForm">
-      <Label label="検索" class="fontSize"></Label>
-      <From v-bind="fromConfig" v-model="searchText" class="formClass"></From>
+    <div class="labelAndfrom">
+      <Label label="search" class="fontSize"></Label>
+      <Inputfield
+        v-model="fromData"
+        v-bind="fromConfig"
+        class="fromClass"
+        @click="holdfrom()"
+      ></Inputfield>
     </div>
-    <Button title="Search" class="defaultButton"></Button>
+    <Button title="Search" class="defaultButton" @click="onButton"></Button>
   </div>
 </template>
 <script lang="ts" setup>
-import From from "@/components/AtomicDesign/Atoms/Form/Form.ts";
-import Button from "@/components/AtomicDesign/Atoms/Button/Button.ts";
-import Label from "@/components/AtomicDesign/Atoms/Label/Label";
-import { reactive, ref } from "vue";
-const searchText = ref();
-const fromConfig = reactive({
-  numberOfLines: 1,
-  width: 200,
-  placeholder: "タグで募集を検索",
-});
+import Inputfield from "@/components/AtomicDesign/Atoms/Inputfield/Inputfield";
+import Button from "@/components/AtomicDesign/Atoms/Button/Button";
+import Label from "@/components/AtomicDesign/Atoms/Label/src/Label.vue";
+import {
+  type inputfromConfig,
+  type ConfigKey,
+} from "@/components/Hooks/web/formConfig";
+
+const fromConfig = defineProps<
+  Partial<inputfromConfig> & { configType: ConfigKey }
+>();
+const emit = defineEmits<{
+  (e: "hold"): void;
+  (e: "search"): void;
+}>();
+
+const onButton = () => {
+  emit("search");
+};
+const holdfrom = () => {
+  emit("hold");
+};
+
+const fromData = defineModel();
 </script>
+
 <style scoped>
-.labelAndForm {
+.labelAndfrom {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -29,7 +49,7 @@ const fromConfig = reactive({
 .fontSize {
   size: 20px;
 }
-.formClass {
+.fromClass {
   background-color: black;
   color: white;
   font-weight: 900;

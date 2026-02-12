@@ -1,10 +1,11 @@
 export interface RecruitmentCardType{
   name: string,
   time: string,
-  people: string,
+  people: number,
   detail: string,
   tag: string[]
   id: string,
+  data: number
 }
 
 export type Id = RecruitmentCardType['id'];

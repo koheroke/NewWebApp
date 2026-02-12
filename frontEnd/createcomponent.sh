@@ -12,7 +12,7 @@ EOF
 cat <<EOF > "$TARGET_PATH/src/${USER_INPUT}.vue"
 <template></template>
 <script lang="ts" setup>
-  import From from "@/components/AtomicDesign/Atoms/Form/Form.ts";
+  import from from "@/components/AtomicDesign/Atoms/from/from.ts";
   import Button from "@/components/AtomicDesign/Atoms/Button/Button.ts";
   import Label from "@/components/AtomicDesign/Atoms/Label/Label";
 </script>

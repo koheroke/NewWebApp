@@ -16,4 +16,9 @@ defineProps({
   width: auto;
   height: auto;
 }
+.title {
+  color: slategray;
+  font-weight: 700;
+  border-radius: 20px;
+}
 </style>
