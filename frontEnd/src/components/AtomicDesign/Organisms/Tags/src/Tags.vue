@@ -12,23 +12,22 @@
         <Button
           :title="tag"
           class="defaultButton"
-          @click="clickTag(tag)"
+          @click="tagTrigger(tag)"
         ></Button>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-import Button from "@/components/AtomicDesign/Atoms/Button/Button.ts";
+import Button from "@A/Atoms/Button/Button.ts";
 import testTags from "@/testmodule/tags";
-import { tagStore } from "@/components/Stores/appStore";
-import Search from "@/components/AtomicDesign/Molecules/Search/src/Search.vue";
-const tagstore = tagStore();
+import Search from "@A/Molecules/Search/src/Search.vue";
 import { ref } from "vue";
 const tags = ref(testTags);
-const clickTag = (tag: string) => {
-  tagstore.add(tag);
-};
+
+const props = defineProps<{
+  tagTrigger: (tag: string) => void;
+}>();
 </script>
 <style scoped>
 .title {
@@ -40,16 +39,6 @@ const clickTag = (tag: string) => {
 }
 .Search {
   width: 500px;
-}
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 20px 0px;
-  gap: 15px;
-  background-color: white;
-  border-radius: 10px;
-  padding: 20px 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 .defaultButton {
   border-radius: 10%;

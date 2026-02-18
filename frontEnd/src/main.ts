@@ -6,6 +6,7 @@ import './publicCss/AtomsUI.css'
 import App from './App.vue'
 import router from './components/Routers/router'
 import { createPinia } from 'pinia'
+import 'element-plus/dist/index.css' 
 
 const app = createApp(App)
 const pinia = createPinia()

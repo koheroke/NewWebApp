@@ -1,5 +1,5 @@
 import type { RecruitmentCardType, Id, UpdatePayload } from '@/interfaces/recruitmentCard'
-import { getTestData } from "@/testmodule/InputfromWebsocket"
+import { getTestData } from "../testmodule/InputFromWebsocket"
 const MngRecruitment = {
   recruitments : [] as RecruitmentCardType[],
   extraction(key: keyof RecruitmentCardType){
@@ -13,7 +13,6 @@ const MngRecruitment = {
     this.recruitments.push(recruitmentCard)
   },
   check(id:Id){
-    //**idの重複チェック */
     const allId = this.extraction("id")
     if(allId.includes(id)){
       return false

@@ -1,52 +1,43 @@
 import { Server, Socket } from 'socket.io';
-import MngRecruitment from '@/hooks/MngRecruitment'
 import type { RecruitmentCardType, Id, UpdatePayload } from '@/interfaces/recruitmentCard'
-const mngRecruitment =  MngRecruitment
-
-const create_recruitment = (socket : Socket, data : RecruitmentCardType) => {
-  const duplication = mngRecruitment.add(data)
-  if(duplication){
-    socket.broadcast.emit('duplicationId_post');
-    return
-  }
-  socket.broadcast.emit('create_recruitment_post',JSON.stringify(data));
-}
-
-const update_recruitment = (socket : Socket, data : UpdatePayload) => {
-  const index = mngRecruitment.update(data)
-  if(!index)return
-  socket.broadcast.emit('update_recruitment_post', JSON.stringify({data:data,index:index}));
-}
-
-const delete_recruitment = (socket : Socket, data : Id) => {
-  const index = mngRecruitment.delete(data) 
-  if(!index)return
-  socket.broadcast.emit('delete_recruitment_post', index);
-}
-const request_recruitment = (socket : Socket) => {
-  socket.emit('request_recruitment_post', JSON.stringify(mngRecruitment.request()));
-}
-
-const joinchat =(socket:Socket,id:Id)=>{
-
-}
+import listSocket from '@/hooks/socketHook/listSocket'
+import {Chat} from '@/hooks/socketHook/chatSocket'
+import {type messageInterface} from '@/interfaces/chat'
+const listsocket = listSocket;
+const chat = Chat;
 
 export const registerSocketHandlers = (io: Server) => {
-  io.on('connection', (socket: Socket) => {
-    socket.on('create_recruitment', (data : RecruitmentCardType) => {
-      create_recruitment(socket, data)
-    });
-    socket.on('update_recruitment', (data : UpdatePayload) => {
-      update_recruitment(socket, data)
-    });
-    socket.on('delete_recruitment', (data : Id) => {
-      delete_recruitment(socket, data)
-    });
-    socket.on('request_recruitment', () => {
-      request_recruitment(socket)
-    });
-    socket.on('joinChat',(id: Id)=>{
-      joinchat(socket,id)
+  const listNamespace = io.of('/list')
+
+  listNamespace.on('connection', (socket: Socket) => {
+    socket.on('create', (data: RecruitmentCardType) => {
+      listsocket.create(socket, data)
     })
-  });
-};
+    socket.on('update', (data: UpdatePayload) => {
+      listsocket.update(socket, data)
+    })
+    socket.on('delete', (data: Id) => {
+      listsocket.delete(socket, data)
+    })
+    socket.on('request', () => {
+      listsocket.request(socket)
+    })
+  })
+
+  const chatNamespace = io.of('/chat')
+
+  chatNamespace.on('connection', (socket: Socket) => {
+    socket.on('join', (id: Id) => {
+      chat.joinchat(socket, id)
+    })
+    socket.on('send', (data: messageInterface) => {
+      chat.sendMessage(socket, data)
+    })
+    socket.on('getAll', (id: Id) => {
+      chat.getAllMessage(socket, id)
+    })
+  })
+}
+
+
+

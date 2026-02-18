@@ -3,22 +3,22 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/recruitment',
     name: 'recruitment',
-    component: () => import('@/components/AtomicDesign/Peges/RecruitmentListPage/RecruitmentListPage')
+    component: () => import('@/components/AtomicDesign/Pages/RecruitmentListPage/RecruitmentListPage')
   },
   {
     path: '/create',
     name: 'create',
-    component: () => import('@/components/AtomicDesign/Peges/CleateRecruitmentPage/CleateRecruitmentPage')
+    component: () => import('@/components/AtomicDesign/Pages/CleateRecruitmentPage/CleateRecruitmentPage')
   },
   {
     path: '/chat',
     name: 'chat',
-    component: () => import('@/components/AtomicDesign/Peges/Chat/Chat')
+    component: () => import('@/components/AtomicDesign/Pages/Chat/Chat')
   },
   {
     path: '/AttendList',
     name: 'AttendList',
-    component: () => import('@/components/AtomicDesign/Peges/AttendList/AttendList')
+    component: () => import('@/components/AtomicDesign/Pages/AttendList/AttendList')
   },
 ]
 const router = createRouter({

@@ -1,5 +1,5 @@
 <template>
-  <div class="lavelClass">{{ label }}</div>
+  <div class="label">{{ label }}</div>
 </template>
 <script lang="ts" setup>
 defineProps({
@@ -7,8 +7,7 @@ defineProps({
 });
 </script>
 <style scoped>
-.lavelClass {
-  color: slategray;
+.label {
   font-weight: 900;
   justify-content: center;
   align-items: center;
@@ -17,7 +16,6 @@ defineProps({
   height: auto;
 }
 .title {
-  color: slategray;
   font-weight: 700;
   border-radius: 20px;
 }

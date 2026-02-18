@@ -7,6 +7,9 @@ export interface RecruitmentCardType{
   id: string,
   data: number
 }
+export type cardInList = RecruitmentCardType&{
+   ButtonTitile: string,
+}
 
 export type Id = RecruitmentCardType['id'];
 

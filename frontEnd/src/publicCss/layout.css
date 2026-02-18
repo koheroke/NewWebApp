@@ -5,6 +5,9 @@
 .right-align-start {
   margin-left: auto;
 }
+.left-align-start {
+  margin-right: auto;
+}
 .list {
   display: flex;
   flex-direction: column;

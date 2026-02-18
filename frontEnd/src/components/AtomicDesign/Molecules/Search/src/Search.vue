@@ -1,9 +1,8 @@
 <template>
   <div class="Gridlayout">
     <div class="labelAndfrom">
-      <Label label="search" class="fontSize"></Label>
       <Inputfield
-        v-model="fromData"
+        v-model="inputData"
         v-bind="fromConfig"
         class="fromClass"
         @click="holdfrom()"
@@ -13,9 +12,8 @@
   </div>
 </template>
 <script lang="ts" setup>
-import Inputfield from "@/components/AtomicDesign/Atoms/Inputfield/Inputfield";
-import Button from "@/components/AtomicDesign/Atoms/Button/Button";
-import Label from "@/components/AtomicDesign/Atoms/Label/src/Label.vue";
+import Inputfield from "@A/Atoms/Inputfield/Inputfield";
+import Button from "@A/Atoms/Button/Button";
 import {
   type inputfromConfig,
   type ConfigKey,
@@ -36,7 +34,7 @@ const holdfrom = () => {
   emit("hold");
 };
 
-const fromData = defineModel();
+const inputData = defineModel<string>();
 </script>
 
 <style scoped>
@@ -44,7 +42,14 @@ const fromData = defineModel();
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 2px;
+}
+.defaultButton {
+  background-color: rgb(134, 194, 247);
+  color: white;
+  border-radius: 5px;
+  &:hover {
+    background-color: rgb(172, 203, 230);
+  }
 }
 .fontSize {
   size: 20px;
@@ -53,5 +58,6 @@ const fromData = defineModel();
   background-color: black;
   color: white;
   font-weight: 900;
+  height: 100%;
 }
 </style>

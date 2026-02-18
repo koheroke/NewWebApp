@@ -1,21 +1,31 @@
 <template>
   <div class="parent">
-    <div>
-      <from type="message" class="fromClass"></from>
+    <div class="textArea">
+      <Inputfield
+        placeholder="メッセージを送信"
+        configType="message"
+        class="fromClass"
+      ></Inputfield>
     </div>
-    <Button title="送信" class="defaultButton"></Button>
   </div>
 </template>
 <script lang="ts" setup>
-import from from "@/components/AtomicDesign/Atoms/from/from.ts";
-import Button from "@/components/AtomicDesign/Atoms/Button/Button.ts";
+import Inputfield from "@A/Atoms/Inputfield/Inputfield";
+import Button from "@A/Atoms/Button/Button.ts";
 </script>
 <style scoped>
 .parent {
-  width: 100%;
+  position: relative;
+  width: 90vw;
   height: auto;
+  border-radius: 10px;
+  display: flex;
+  background-color: white;
+  box-sizing: border-box;
 }
-.defaultButton {
-  width: auto;
+.textArea {
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
 }
 </style>

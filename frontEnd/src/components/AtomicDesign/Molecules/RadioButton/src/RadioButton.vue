@@ -15,8 +15,8 @@
   </div>
 </template>
 <script lang="ts" setup>
-import Button from "@/components/AtomicDesign/Atoms/Button/Button.ts";
-import Label from "@/components/AtomicDesign/Atoms/Label/src/Label.vue";
+import Button from "@A/Atoms/Button/Button.ts";
+import Label from "@A/Atoms/Label/src/Label.vue";
 
 const props = defineProps<{
   title?: string;
@@ -30,19 +30,19 @@ const onElement = (element: string) => {
 </script>
 <style scoped>
 .defaultButton {
-  background-color: #eaeaea;
+  background-color: #ffffffd5;
   color: black;
   border-radius: 0%;
   border-radius: 5px;
   &:hover {
-    background-color: rgb(228, 226, 224);
+    background-color: rgb(245, 245, 245);
   }
 }
 .elements {
   gap: 0;
 }
 .defaultButton.selected {
-  background-color: #dc6f02;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
   color: white;
   font-weight: bold;
 }

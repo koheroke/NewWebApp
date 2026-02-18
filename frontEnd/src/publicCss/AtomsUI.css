@@ -14,11 +14,18 @@
 /* それぞれの固有の色だけを分ける */
 .defaultButton {
   background-color: #dc6f02;
+    /* background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%); */
   color: #eeddbb;
   font-weight: 900;
   &:hover {
     background-color: rgb(239, 157, 109);
   }
+}
+
+.gradient{
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  box-shadow: 0 15px 35px -5px rgba(79, 172, 254, 0.4);
+  color: #ffffff !important;
 }
 
 .simplicityButton {
@@ -30,4 +37,13 @@
 }
 .caveat{
   color: red !important;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  background-color: white;
+  border-radius: 5px;
+  padding: 0px 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }

@@ -1,29 +1,30 @@
 <template>
   <div class="Gridlayout border">
-    <Label label="投票トーク" class="title"></Label>
+    <Label label="サイト名ロゴ" class="title"></Label>
     <div class="pageTransitionButtons Gridlayout">
-      <Button
-        title="募集一覧"
-        class="simplicityButton topButton"
-        @click="handleSubmit('recruitment')"
-      ></Button>
-      <Button
-        title="募集作成"
-        class="simplicityButton topButton"
-        @click="handleSubmit('create')"
-      ></Button>
-      <Button
-        title="参加予定"
-        class="simplicityButton topButton"
-        @click="handleSubmit('AttendList')"
-      ></Button>
+      <Label label="MENU" class=""></Label>
+      <div v-for="menu in topMenu">
+        <Button
+          :title="menu.title"
+          class="simplicityButton topButton shimmerEffect"
+          @click="handleSubmit(menu.handleSubmit)"
+        ></Button>
+      </div>
     </div>
+    <Button title="ログイン" class="right-align-start"></Button>
   </div>
 </template>
 <script lang="ts" setup>
-import Button from "@/components/AtomicDesign/Atoms/Button/Button";
-import Label from "@/components/AtomicDesign/Atoms/Label/Label";
+import Button from "@A/Atoms/Button/Button";
+import Label from "@A/Atoms/Label/Label";
 import { useRouter } from "vue-router";
+
+const topMenu = [
+  { handleSubmit: "recruitment", title: "募集一覧" },
+  { handleSubmit: "create", title: "募集作成" },
+  { handleSubmit: "AttendList", title: "参加予定" },
+  { handleSubmit: "heldList", title: "開催途中" },
+];
 
 const router = useRouter();
 const handleSubmit = (id: String) => {
@@ -31,14 +32,14 @@ const handleSubmit = (id: String) => {
     case "recruitment":
       router.push("/recruitment");
       break;
-    case "history":
-      router.push("/history");
-      break;
     case "create":
       router.push("/create");
       break;
     case "AttendList":
       router.push("/AttendList");
+      break;
+    case "heldList":
+      router.push("/heldList");
       break;
     default:
       break;
@@ -47,24 +48,38 @@ const handleSubmit = (id: String) => {
 </script>
 <style scoped>
 .pageTransitionButtons {
-  font-size: 20px;
   font-weight: 900;
   padding-top: 20px;
   padding-left: 10px;
-  gap: 20px;
+  gap: 10px;
 }
 .border {
   width: 100%;
-  padding: 0 20px 20px 20px;
+  padding: 0 20px 15px 5px;
   height: auto;
   box-sizing: border-box;
+  background: linear-gradient(45deg, #a96fe7 0%, #2575fc 100%);
+  color: rgb(255, 255, 255);
 }
 .title {
   font-weight: 900;
-  padding: 0px 20px;
+  padding: 5px 20px;
+  font-size: 30px !important;
 }
 .topButton {
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0) !important;
+  border: 2px solid white;
+  font-size: 23px !important;
+  color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+.topButton:hover {
+  background-color: rgba(255, 255, 255, 0.171) !important;
+  border: 2px solid rgba(255, 255, 255, 0.763);
+  box-shadow: 10px 5px 35px -5px rgba(146, 189, 226, 0.4);
+}
+.shimmerEffect::before {
+  animation: shimmer 0.6s;
 }
 </style>

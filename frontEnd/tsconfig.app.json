@@ -6,14 +6,17 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    // 開発環境
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    //
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
     "baseUrl": "", 
     "paths": {
-      "@/*": ["src/*"] 
+      "@/*": ["src/*"] ,
+      "@A/*": ["src/components/AtomicDesign/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "src/components/AtomicDesign/Organisms/sendMessageBar"]

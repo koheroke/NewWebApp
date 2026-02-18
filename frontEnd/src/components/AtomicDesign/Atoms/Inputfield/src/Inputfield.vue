@@ -1,6 +1,6 @@
 <template>
   <el-input
-    v-model="fromData"
+    v-model="inputData"
     :type="fromType.fromType"
     :autosize="autosizeConfig"
     :placeholder="fromType.placeholder"
@@ -26,12 +26,13 @@ const propsData = defineProps<
   Partial<inputfromConfig> & { configType: ConfigKey }
 >();
 const props = computed(() => {
-  return Object.fromEntries(
+  const filtered = Object.fromEntries(
     Object.entries(propsData).filter(([_, value]) => value !== undefined),
   );
+  return filtered as { configType: ConfigKey };
 });
 
-const fromData = defineModel<string>({ default: "" });
+const inputData = defineModel<string>({ default: "" });
 const type: ConfigKey = props.value.configType;
 const fromType = {
   ...defaultConfig,
@@ -64,19 +65,21 @@ const handleEnter = (value: string) => {
   if (fromType.numberOfLines === 1) {
     val = value.replace(/\n/g, "");
   }
-  fromData.value = val;
+  inputData.value = val;
 };
 
-const onEnterKey = (e: KeyboardEvent | Event) => {
-  if (e.isComposing) return;
-  e.preventDefault();
-  handleEnter(fromData.value);
+const onEnterKey = (e: Event) => {
+  if (e instanceof KeyboardEvent) {
+    if (e.isComposing || type == "text") return;
+    e.preventDefault();
+    handleEnter(inputData.value);
+  }
 };
 
 const onShiftEnterKey = (e: Event) => {
   if (newLineConfig.value === false && autosizeConfig.value === false) {
     e.preventDefault();
-    handleEnter(fromData.value);
+    handleEnter(inputData.value);
   } else {
   }
 };

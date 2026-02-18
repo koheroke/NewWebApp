@@ -4,7 +4,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import SendMessage from "@/components/AtomicDesign/Molecules/SendMessage/src/SendMessage.vue";
+import SendMessage from "@A/Molecules/SendMessage/src/SendMessage.vue";
 </script>
 <style scoped>
 .bar {
