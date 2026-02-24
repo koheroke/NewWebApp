@@ -3,7 +3,10 @@
     <div class="Gridlayout gap upperPart">
       <Label :label="props.recruitmentListData.name"></Label>
       <Label :label="props.recruitmentListData.time"></Label>
-      <Button title="詳細" class="simplicityButton right-align-start"></Button>
+      <el-icon :size="25" color="#4D4D4F" class="right-align-start">
+        <i-ep-Memo></i-ep-Memo>
+      </el-icon>
+      <Button title="詳細" class="simplicityButton"></Button>
       <Button
         :title="props.recruitmentListData.ButtonTitile"
         class="defaultButton gradient shimmerEffect"
@@ -11,12 +14,18 @@
       ></Button>
     </div>
     <div class="Gridlayout gap tags bottom">
+      <el-icon :size="25" color="#4D4D4F">
+        <i-ep-List></i-ep-List>
+      </el-icon>
       <div v-for="tag in props.recruitmentListData.tag" :key="tag" class="tag">
         <Label :label="tag"></Label>
       </div>
+      <el-icon :size="25" color="#4D4D4F" class="right-align-start">
+        <i-ep-UserFilled></i-ep-UserFilled>
+      </el-icon>
       <Label
         :label="props.recruitmentListData.people + '人'"
-        class="people right-align-start"
+        class="people"
       ></Label>
     </div>
   </div>
@@ -64,6 +73,7 @@
 <script lang="ts" setup>
 import Button from "@A/Atoms/Button/Button";
 import Label from "@A/Atoms/Label/Label";
+
 import type { cardInList } from "@/components/Interfaces/web/recruitmentCard";
 const props = defineProps<{
   clickJoinButton: (id: string, buttontitile: string) => void;

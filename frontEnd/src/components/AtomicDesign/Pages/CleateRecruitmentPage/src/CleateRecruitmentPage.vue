@@ -1,11 +1,11 @@
 <template>
-  <div class="page">
+  <div class="list page">
     <inputForm
-      class="form scroll-y absoluteCenter"
+      class="form scroll-y"
       :configList="fromConfig"
       :onEmitButton="onEmitButton"
       formLabel="募集を作成"
-      v-model="fromData"
+      v-model="formData"
     ></inputForm>
     <PopingElement :trigger="popingElementTrigger">
       <Tags :tagTrigger="tagTrigger"></Tags>
@@ -23,28 +23,39 @@ import { type formItemType } from "@A/Molecules/FormItem/Interface";
 import { type RecruitmentCardType } from "@/components/Interfaces/web/recruitmentCard";
 import VariableList from "@/components/AtomicDesign/Molecules/VariableList/src/VariableList.vue";
 import { ElDatePicker } from "element-plus";
+import { recruitmentApi } from "@/components/Hooks/web/useRecruitmentData";
+import { useRouter } from "vue-router";
+import { useLocalStorage } from "@/components/Hooks/web/useLocalStorage";
+const storage = useLocalStorage();
+const router = useRouter();
+// const recruitmentApi = null; //開発用
+
 const popingElementTrigger = ref(false);
 const onTag = () => {
   popingElementTrigger.value = !popingElementTrigger.value;
 };
 
-const fromData: RecruitmentCardType = reactive({
+const formData: RecruitmentCardType = reactive({
   name: "",
   detail: "",
   tag: [],
   time: "",
-  people: 1,
+  apo_people: 1,
+  join_people: 0,
   id: generateId(),
   data: 0,
 });
 
 const tagTrigger = (tag: string) => {
-  fromData.tag.push(tag);
+  formData.tag.push(tag);
 };
 
 const onEmitButton = () => {
-  console.log("soketEmit" + JSON.stringify(fromData));
-  fromData.data = Date.now();
+  console.log("soketEmit" + JSON.stringify(formData));
+  formData.data = Date.now();
+  recruitmentApi.create(formData);
+  storage.setItem("schedule", formData.id);
+  router.push("/recruitment");
 };
 
 const fromConfig: formItemType[] = [
@@ -62,6 +73,7 @@ const fromConfig: formItemType[] = [
     props: {
       type: "datetime",
       placeholder: "",
+      format: "M月d日 HH:mm",
     },
     label: "時刻",
     component: ElDatePicker,
@@ -92,13 +104,12 @@ const fromConfig: formItemType[] = [
 </script>
 <style scoped>
 .form {
-  position: absolute;
-  top: 45%;
-  width: 70%;
-  height: 80%;
+  width: 100%;
+  height: auto;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   box-sizing: border-box;
+  padding: 20px;
   background-color: rgb(255, 255, 255) !important;
 }
 </style>

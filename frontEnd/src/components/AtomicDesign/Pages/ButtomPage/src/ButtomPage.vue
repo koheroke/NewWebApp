@@ -1,9 +1,12 @@
 <script lang="ts" setup>
 import { RouterView } from "vue-router";
-import ButtomPage from "@A/Pages/ButtomPage/ButtomPage";
+import Topbar from "@A/Organisms/Topbar/Topbar";
 </script>
 <template>
   <div class="page">
+    <div class="pageTop">
+      <Topbar></Topbar>
+    </div>
     <div class="body">
       <RouterView />
     </div>

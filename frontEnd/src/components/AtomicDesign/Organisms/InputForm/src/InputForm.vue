@@ -1,11 +1,10 @@
 <template>
-  <div class="parent">
+  <div class="parent recativeCenter">
     <div class="list">
-      <Label :label="formLabel" class="label"></Label>
       <div
         v-for="(item, index) in props.configList"
         :key="item.id"
-        class="formItem"
+        class="formItem radius"
       >
         <formItem
           :ref="(el) => (itemRefs[index] = el)"
@@ -16,7 +15,7 @@
       <Button
         title="投稿"
         @click="onPost()"
-        class="defaultButton gradient"
+        class="radius gradient postButton"
       ></Button>
     </div>
   </div>
@@ -26,11 +25,9 @@ import { type formItemType } from "@A/Molecules/FormItem/Interface";
 import formItem from "@A/Molecules/FormItem/FormItem";
 import Button from "@/components/AtomicDesign/Atoms/Button/Button";
 import { ref, onBeforeUpdate } from "vue";
-import Label from "@/components/AtomicDesign/Atoms/Label/src/Label.vue";
 import { type RecruitmentCardType } from "@/components/Interfaces/web/recruitmentCard";
 const props = defineProps<{
   configList: formItemType[];
-  formLabel: string;
   onEmitButton: () => void;
 }>();
 const fromData = defineModel<RecruitmentCardType>({ required: true });
@@ -49,7 +46,8 @@ const onPost = () => {
 </script>
 <style scoped>
 .list {
-  gap: 30px;
+  gap: 50px;
+  width: 90%;
 }
 .form {
   padding: 0 30px;
@@ -63,12 +61,25 @@ const onPost = () => {
 }
 .formItem {
   background-color: rgb(244, 244, 244) !important;
-  border-radius: 10px;
-  padding: 10px;
 }
 .label {
   margin: 10px;
   justify-content: left;
   font-size: 20px;
+}
+.radius {
+  border-radius: 10px;
+}
+.parent {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+.postButton {
+  transition: scale 0.2s;
+}
+.postButton:hover {
+  scale: 1.03;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 </style>

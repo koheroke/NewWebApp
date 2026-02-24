@@ -8,7 +8,6 @@ const chat = Chat;
 
 export const registerSocketHandlers = (io: Server) => {
   const listNamespace = io.of('/list')
-
   listNamespace.on('connection', (socket: Socket) => {
     socket.on('create', (data: RecruitmentCardType) => {
       listsocket.create(socket, data)

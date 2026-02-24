@@ -11,8 +11,10 @@ export const sortingButtonType = (
     const isScheduled = scheduledIds.includes(item.id);
     const isOngoing = ongoingIds.includes(item.id)
     let buttonTitle =""
+    let people = item.apo_people
     if (isOngoing) {
       buttonTitle = "参加";
+      people = item.join_people
     } else if (isScheduled) {
       buttonTitle = "参加取消"; 
     } else {
@@ -21,6 +23,7 @@ export const sortingButtonType = (
     return {
       ...item,
       ButtonTitile: buttonTitle,
+      people:people
     };
   });
 };

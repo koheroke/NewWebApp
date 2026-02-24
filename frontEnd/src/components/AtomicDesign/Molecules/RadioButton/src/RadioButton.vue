@@ -1,31 +1,27 @@
 <template>
-  <div class="menu Gridlayout">
-    <Label :label="props.title"></Label>
-    <div class="elements Gridlayout">
-      <div
-        v-for="element in elements"
-        :key="element.id"
-        class="defaultButton"
-        @click="onElement(element.id)"
-        :class="{ 'doClick selected': selectedValue === element.id }"
-      >
-        <Button :title="element.name"></Button>
-      </div>
+  <div class="elements Gridlayout">
+    <div
+      v-for="element in elements"
+      :key="element.id"
+      class="defaultButton"
+      @click="onElement(element.id)"
+      :class="{ 'doClick selected': selectedValue === element.id }"
+    >
+      <Button :title="element.name"></Button>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
 import Button from "@A/Atoms/Button/Button.ts";
-import Label from "@A/Atoms/Label/src/Label.vue";
-
 const props = defineProps<{
-  title?: string;
   elements?: { name: string; id: string }[];
+  onClick?: (element: string) => void;
 }>();
 const selectedValue = defineModel<string>();
 
 const onElement = (element: string) => {
   selectedValue.value = element;
+  if (props.onClick) props.onClick(element);
 };
 </script>
 <style scoped>
@@ -38,12 +34,12 @@ const onElement = (element: string) => {
     background-color: rgb(245, 245, 245);
   }
 }
-.elements {
-  gap: 0;
-}
 .defaultButton.selected {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  background: linear-gradient(135deg, #3398f0 0%, #00f2fe 100%);
   color: white;
   font-weight: bold;
+}
+.Gridlayout {
+  gap: 0px;
 }
 </style>

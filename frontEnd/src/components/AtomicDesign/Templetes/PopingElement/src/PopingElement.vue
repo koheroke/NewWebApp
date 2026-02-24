@@ -1,6 +1,6 @@
 <template>
   <div class="popingElementArea">
-    <div class="clickArea page" @click="click" v-show="isPoping"></div>
+    <div class="clickArea" @click="click" v-show="isPoping"></div>
     <div
       class="content-wrapper scroll-y"
       :class="{ downing: isDowning, poping: isPoping }"
@@ -37,14 +37,17 @@ const click = () => {
 };
 </script>
 <style scoped>
-.page {
-  padding-top: 20px;
-  align-items: center;
-  overflow-x: hidden;
-}
 .clickArea {
   position: absolute;
   background-color: transparent;
+  z-index: 2;
+  padding-top: 20px;
+  align-items: center;
+  overflow-x: hidden;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
 }
 
 .content-wrapper {
@@ -58,6 +61,7 @@ const click = () => {
   display: block;
   scrollbar-width: none;
   box-sizing: border-box;
+  z-index: 3;
 }
 .popingElementArea {
   box-sizing: border-box;

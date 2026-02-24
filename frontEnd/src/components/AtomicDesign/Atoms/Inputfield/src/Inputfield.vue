@@ -92,5 +92,7 @@ const onShiftEnterKey = (e: Event) => {
 .custom-round-input :deep(.el-input__wrapper),
 .custom-round-input :deep(.el-textarea__inner) {
   border-radius: 10px !important;
+  box-shadow: none !important; /* 枠線（影）を消す */
+  border: none; /* 念のため border も消す */
 }
 </style>

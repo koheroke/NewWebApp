@@ -17,6 +17,8 @@ import { type RecruitmentCardType } from "@/components/Interfaces/web/recruitmen
 import { ref, computed } from "vue";
 import { sortingButtonType } from "@/components/Hooks/web/RecruitmentListHook";
 import { useLocalStorage } from "@/components/Hooks/web/useLocalStorage";
+import { useRouter } from "vue-router";
+const router = useRouter();
 const storage = useLocalStorage();
 const props = defineProps<{
   RecruitmentCards: RecruitmentCardType[];
@@ -52,7 +54,10 @@ const clickJoinButton = (id: string, buttontitile: string) => {
       scheduledIds.value = storage.getItem("schedule") || [];
       break;
     case "参加":
-      break;
+      router.push({
+        path: "/chat",
+        query: { id: id },
+      });
   }
 };
 </script>

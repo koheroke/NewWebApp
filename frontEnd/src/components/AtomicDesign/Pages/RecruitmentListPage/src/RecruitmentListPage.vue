@@ -1,5 +1,10 @@
 <template>
   <div class="page">
+    <Notification
+      label="募集されました!"
+      type="log"
+      :poping="notification"
+    ></Notification>
     <PopingElement :trigger="popingElementTrigger" class="tagArea">
       <Tags :tagTrigger="tagTrigger"></Tags>
     </PopingElement>
@@ -22,7 +27,7 @@
             v-model="fromData"
             configType="input"
             placeholder="募集を検索"
-            @hold="onSearchArea"
+            @focus="focusSearchArea"
             @search="search"
             class="search"
           ></Search>
@@ -39,21 +44,22 @@
 </template>
 <script lang="ts" setup>
 import RecruitmentList from "@A/Organisms/RecruitmentList/src/RecruitmentList.vue";
-import { getTestData } from "@/testmodule/InputFromWebsocket";
 import RadioButton from "@A/Molecules/RadioButton/RadioButton";
 import Search from "@A/Molecules/Search/Search";
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import Tags from "@A/Organisms/Tags/Tags";
 import PopingElement from "@A/Templetes/PopingElement/PopingElement";
 import { searchResults, andResults } from "@/components/Hooks/web/saerch";
-import { type RecruitmentCardType } from "@/components/Interfaces/web/recruitmentCard";
 import {
   RecruitmentCards,
-  RecruitmentApi,
+  recruitmentApi,
 } from "@/components/Hooks/web/useRecruitmentData";
-const recruitmentApi = new RecruitmentApi();
+
+// import { getTestData } from "@/testmodule/InputFromWebsocket";
+const notification = ref(false);
 recruitmentApi.request();
 
+import Notification from "@A/Molecules/Notification/Notification";
 const listSwitch = [
   { id: "new", name: "新着順" },
   { id: "people", name: "人数順" },
@@ -63,59 +69,63 @@ const searchSwitch = [
   { id: "tag", name: "タグで検索" },
   { id: "name", name: "名前で検索" },
 ];
-const rawData = ref<RecruitmentCardType[]>(RecruitmentCards.value);
+
 const RadioSearch_selected = ref("tag");
 const RadioList_selected = ref("new");
 const fromData = ref<string>("");
-const tagTrigger = (tag: string) => {
-  if (fromData.value == "") {
-    fromData.value += tag + "";
-  } else {
-    fromData.value += "" + tag;
+
+const sortedBaseData = computed(() => {
+  const base = [...RecruitmentCards.value];
+  // const base = [...getTestData()];
+  switch (RadioList_selected.value) {
+    case "people":
+      return base.sort((a, b) => b.apo_people - a.apo_people);
+    case "data":
+      return base.sort((a, b) => a.data - b.data);
+    case "new":
+      return base;
+    default:
+      return base;
   }
+});
+
+const rawData = computed(() => {
+  const baseData = sortedBaseData.value;
+  if (fromData.value === "") {
+    return baseData;
+  }
+  switch (RadioSearch_selected.value) {
+    case "tag":
+      const tags = fromData.value.trim().split(/\s+/);
+      return andResults(baseData, tags);
+    case "name":
+      return searchResults(baseData, fromData.value);
+    default:
+      return baseData;
+  }
+});
+
+const tagTrigger = (tag: string) => {
+  fromData.value += (fromData.value === "" ? "" : " ") + tag;
 };
 
 const popingElementTrigger = ref(false);
-const onSearchArea = () => {
+const focusSearchArea = () => {
   if (RadioSearch_selected.value == "tag") {
     popingElementTrigger.value = !popingElementTrigger.value;
   }
 };
+const search = () => {
+  popingElementTrigger.value = false;
+};
 
 watch(
-  RadioList_selected,
-  (newVal) => {
-    switch (newVal) {
-      case "people":
-        rawData.value = [...getTestData()].sort((a, b) => b.people - a.people);
-        break;
-      case "new":
-        rawData.value = getTestData();
-        break;
-      case "data":
-        rawData.value = [...getTestData()].sort((a, b) => a.data - b.data);
-        break;
+  () => rawData.value.length,
+  (newValue) => {
+    if (rawData.value[newValue - 1]?.id) {
     }
   },
-  { immediate: true },
 );
-const search = () => {
-  if (fromData.value == "") {
-    rawData.value = getTestData();
-    return;
-  }
-  switch (RadioSearch_selected.value) {
-    case "tag":
-      const tags = fromData.value.split(" ");
-      rawData.value = andResults(getTestData(), tags);
-      break;
-    case "name":
-      rawData.value = searchResults(getTestData(), fromData.value);
-      break;
-  }
-};
-//websocketで渡される操作　削除　追加　変更
-//データ
 </script>
 <style scoped>
 .list {

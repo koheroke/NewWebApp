@@ -1,6 +1,5 @@
 .Gridlayout {
   display: flex;
-  column-gap: 10px;
 }
 .right-align-start {
   margin-left: auto;
@@ -34,4 +33,10 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.recativeCenter {
+  display: flex; 
+  justify-content: center;
+   align-items: center;
 }

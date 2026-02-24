@@ -2,18 +2,15 @@
   <div class="page">
     <div class="Gridlayout">
       <Search
-        class="Search"
+        v-model="fromData"
         configType="input"
         placeholder="タグを検索"
+        class="search"
       ></Search>
     </div>
     <div class="tags">
-      <div v-for="tag in tags" :key="tag">
-        <Button
-          :title="tag"
-          class="defaultButton"
-          @click="tagTrigger(tag)"
-        ></Button>
+      <div v-for="tag in rawData" :key="tag">
+        <Button :title="tag" class="tags" @click="tagTrigger(tag)"></Button>
       </div>
     </div>
   </div>
@@ -22,8 +19,19 @@
 import Button from "@A/Atoms/Button/Button.ts";
 import testTags from "@/testmodule/tags";
 import Search from "@A/Molecules/Search/src/Search.vue";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 const tags = ref(testTags);
+const fromData = ref<string>();
+
+const rawData = computed(() => {
+  const tagsData = tags.value;
+  const searchWord = fromData.value;
+  if (searchWord == "" || searchWord == undefined) {
+    return tagsData;
+  }
+
+  return tagsData.filter((tag) => tag.includes(searchWord));
+});
 
 const props = defineProps<{
   tagTrigger: (tag: string) => void;

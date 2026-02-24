@@ -3,10 +3,13 @@ import { ref, computed } from "vue";
 import Button from "@A/Atoms/Button/Button";
 import RecruitmentList from "@A/Organisms/RecruitmentList/src/RecruitmentList.vue";
 import { useLocalStorage } from "@/components/Hooks/web/useLocalStorage";
-import { getTestData } from "@/testmodule/InputFromWebsocket";
+// import { getTestData } from "@/testmodule/InputFromWebsocket";
 import { type RecruitmentCardType } from "@/components/Interfaces/web/recruitmentCard";
+import Label from "@/components/AtomicDesign/Atoms/Label/src/Label.vue";
+import { RecruitmentCards } from "@/components/Hooks/web/useRecruitmentData";
 const storage = useLocalStorage();
-const hullData = getTestData();
+// const hullData = getTestData();
+const textBool = ref(false);
 const getSchedule = (
   idData: string[],
   hullData: RecruitmentCardType[],
@@ -23,8 +26,11 @@ const getSchedule = (
 
 const scheduledIds = ref<string[]>(storage.getItem("schedule") || []);
 const schedules = computed(() => {
-  return getSchedule(scheduledIds.value, hullData);
+  return getSchedule(scheduledIds.value, RecruitmentCards.value);
 });
+if (schedules.value.length == 0) {
+  textBool.value = true;
+}
 </script>
 
 <template>
@@ -32,6 +38,9 @@ const schedules = computed(() => {
     <Button title="参加予定" class="defaultButton gradient"></Button>
     <div class="RecruitmentList">
       <RecruitmentList :RecruitmentCards="schedules" class="card" />
+    </div>
+    <div v-show="textBool">
+      <Label label="参加予定の募集はありません"></Label>
     </div>
   </div>
 </template>

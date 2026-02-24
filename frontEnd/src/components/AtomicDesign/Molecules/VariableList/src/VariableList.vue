@@ -1,17 +1,29 @@
 <template>
-  <div class="parent Gridlayout">
+  <div class="parent">
     <div v-for="tag in tagData" :key="tag">
       <div class="tags">{{ tag }}</div>
     </div>
-    <Button :title="title" class="defaultButton" @click="onButton"></Button>
+    <el-icon
+      :size="25"
+      color="#409efc"
+      @click="onButton"
+      @mouseenter="isFilled = true"
+      @mouseleave="isFilled = false"
+    >
+      <CirclePlus v-show="!isFilled" />
+      <CirclePlusFilled v-show="isFilled" />
+    </el-icon>
   </div>
 </template>
 <script lang="ts" setup>
-import Button from "@A/Atoms/Button/Button.ts";
+import { CirclePlus, CirclePlusFilled } from "@element-plus/icons-vue";
+import { ref } from "vue";
+const isFilled = ref(false);
 const props = defineProps<{
   title: string;
   click: () => void;
 }>();
+
 const tagData = defineModel();
 const onButton = () => {
   props.click();
@@ -22,10 +34,8 @@ const onButton = () => {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  background-color: white;
 }
 .tags {
-  background: linear-gradient(to right, #ff7e5f, #feb47b) !important;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 </style>

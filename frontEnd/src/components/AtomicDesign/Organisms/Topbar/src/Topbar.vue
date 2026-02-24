@@ -3,13 +3,12 @@
     <Label label="サイト名ロゴ" class="title"></Label>
     <div class="pageTransitionButtons Gridlayout">
       <Label label="MENU" class=""></Label>
-      <div v-for="menu in topMenu">
-        <Button
-          :title="menu.title"
-          class="simplicityButton topButton shimmerEffect"
-          @click="handleSubmit(menu.handleSubmit)"
-        ></Button>
-      </div>
+      <RadioButton
+        title=""
+        :elements="topMenu"
+        :onClick="handleSubmit"
+        class="RadioButton"
+      ></RadioButton>
     </div>
     <Button title="ログイン" class="right-align-start"></Button>
   </div>
@@ -18,12 +17,13 @@
 import Button from "@A/Atoms/Button/Button";
 import Label from "@A/Atoms/Label/Label";
 import { useRouter } from "vue-router";
+import RadioButton from "@A/Molecules/RadioButton/RadioButton";
 
+import { ElRadio, ElRadioGroup } from "element-plus";
 const topMenu = [
-  { handleSubmit: "recruitment", title: "募集一覧" },
-  { handleSubmit: "create", title: "募集作成" },
-  { handleSubmit: "AttendList", title: "参加予定" },
-  { handleSubmit: "heldList", title: "開催途中" },
+  { id: "recruitment", name: "募集一覧" },
+  { id: "create", name: "募集作成" },
+  { id: "AttendList", name: "参加予定" },
 ];
 
 const router = useRouter();
@@ -78,6 +78,10 @@ const handleSubmit = (id: String) => {
   background-color: rgba(255, 255, 255, 0.171) !important;
   border: 2px solid rgba(255, 255, 255, 0.763);
   box-shadow: 10px 5px 35px -5px rgba(146, 189, 226, 0.4);
+}
+.RadioButton {
+  gap: 10px !important;
+  font-size: 20px;
 }
 .shimmerEffect::before {
   animation: shimmer 0.6s;

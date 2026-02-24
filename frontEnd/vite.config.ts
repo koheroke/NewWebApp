@@ -5,6 +5,8 @@ import path from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
 
 export default defineConfig({
   plugins: [vue(),tailwindcss(),    
@@ -12,14 +14,27 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
      Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver(),
+        IconsResolver({
+          enabledCollections: ['ep'], 
+        }),
+      ],
+    }),
+    Icons({
+      autoInstall: true,
     }),
   ],  
+  envDir: '../', 
   resolve: {
-    
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@A': path.resolve(__dirname,'./src/components/AtomicDesign') 
-    }
-  }
+    },
+  },
+  
 })
+
+
+
+
+
