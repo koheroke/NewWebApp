@@ -18,7 +18,6 @@ import { type inputfromConfig, type ConfigKey } from "@H/web/formConfig";
 const fromConfig = defineProps<
   Partial<inputfromConfig> & { configType: ConfigKey }
 >();
-console.log(fromConfig);
 const emit = defineEmits<{
   (e: "focus"): void;
 }>();

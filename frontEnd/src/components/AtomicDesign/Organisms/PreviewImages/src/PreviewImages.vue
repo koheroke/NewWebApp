@@ -1,5 +1,8 @@
 <template>
-  <div class="previewImages Gridlayout">
+  <div
+    class="previewImages Gridlayout"
+    v-if="imageHook.previewImages.length > 0"
+  >
     <div v-for="index in imageHook.previewImages">
       <img :key="index.id" :src="index.data" alt="preview" class="image" />
       <el-icon
@@ -16,20 +19,19 @@
 <script lang="ts" setup>
 import { imageHook } from "@/components/Hooks/web/ImageHook";
 const deletePreview = (id: string) => {
-  console.log("id", id);
   imageHook.removePreviewImageURL(id);
 };
 </script>
 <style scoped>
 .previewImages {
-  padding: 10px;
-  box-sizing: border-box;
   width: 100%;
   gap: 5px;
   height: auto;
   overflow-x: auto;
   overflow-y: hidden;
   background-color: white;
+  padding: 10px;
+  box-sizing: border-box;
 }
 .image {
   width: 70px;
@@ -39,6 +41,8 @@ const deletePreview = (id: string) => {
 }
 .deleteButton {
   position: absolute;
+  top: 0%;
+  left: 0%;
   background-color: rgb(255, 0, 0);
   border: 1px solid black;
   border-radius: 100%;

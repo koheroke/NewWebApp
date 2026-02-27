@@ -40,7 +40,7 @@ const fromType = {
 };
 const autosizeConfig = computed(() => {
   if (fromType.resize === false) return false;
-  return { minRows: fromType.numberOfLines, maxRows: 10 };
+  return { minRows: fromType.numberOfLines, maxRows: fromType.maxRows };
 });
 const newLineConfig = computed(() => {
   if (fromType.newLine === false) return false;

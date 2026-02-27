@@ -37,8 +37,11 @@ export interface fromConfigType {
   resize: boolean,
   fromType: string,
   width: number | null,
+  maxRows?:number,
 }
 
-export type inputfromConfig = fromConfigType & {
+type ConfigWithoutResize = Omit<fromConfigType, 'resize'>;
+
+export type inputfromConfig = ConfigWithoutResize & {
   configType:ConfigKey,
 };

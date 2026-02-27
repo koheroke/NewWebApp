@@ -64,6 +64,7 @@ const postdatas: postBox[] = getAllData();
 <style scoped>
 .buttom {
   display: flex;
+  height: auto;
   justify-content: center;
   width: 100%;
 }

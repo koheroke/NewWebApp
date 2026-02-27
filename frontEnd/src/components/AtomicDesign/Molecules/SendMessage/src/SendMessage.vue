@@ -1,11 +1,15 @@
 <template>
   <div class="parent">
     <div class="list">
-      <PreviewImages></PreviewImages>
+      <div>
+        <PreviewImages></PreviewImages>
+      </div>
       <div class="textArea">
         <Inputfield
           placeholder="メッセージを送信"
           configType="message"
+          :maxRows="6"
+          v-model="inputData"
           class="fromClass"
         ></Inputfield>
         <div class="buttomMenus">
@@ -28,9 +32,10 @@
   </div>
 </template>
 <script lang="ts" setup>
+import PreviewImages from "@/components/AtomicDesign/Organisms/PreviewImages/src/PreviewImages.vue";
 import Inputfield from "@A/Atoms/Inputfield/Inputfield";
 import { ref } from "vue";
-import PreviewImages from "@A/Organisms/PreviewImages/PreviewImages";
+const inputData = ref<string>("");
 const isFilled = ref(true);
 </script>
 <style scoped>

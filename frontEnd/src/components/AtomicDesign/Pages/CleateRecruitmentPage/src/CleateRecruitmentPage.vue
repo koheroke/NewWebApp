@@ -56,7 +56,6 @@ const onEmitButton = () => {
   formData.cleatedData = Date.now();
   formData.scheduledtime = data(formData.scheduledtimeString);
   formData.scheduledtimeString = display(formData.scheduledtimeString);
-  console.log(formData.scheduledtime);
   recruitmentApi.create(formData);
   storage.setItem("schedule", formData.id);
   router.push("/recruitment");

@@ -14,15 +14,6 @@ const props = defineProps<{
   id: string;
   buttonBool: boolean;
 }>();
-onMounted(() => {
-  console.log(props.buttonBool);
-});
-watch(
-  () => props.buttonBool,
-  (newValue) => {
-    console.log("孫コンポーネントの表示状態:", newValue);
-  },
-);
 </script>
 <style scoped>
 .onButton {
