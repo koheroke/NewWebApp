@@ -1,8 +1,8 @@
 <template>
   <div class="parent">
     <div class="Gridlayout gap upperPart">
-      <Label :label="props.recruitmentListData.name"></Label>
-      <Label :label="props.recruitmentListData.time"></Label>
+      <Label :label="props.recruitmentListData.name + ' '"></Label>
+      <Label :label="props.recruitmentListData.scheduledtimeString"></Label>
       <el-icon :size="25" color="#4D4D4F" class="right-align-start">
         <i-ep-Memo></i-ep-Memo>
       </el-icon>

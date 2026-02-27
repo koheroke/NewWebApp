@@ -1,6 +1,6 @@
 import io from "socket.io-client"; 
 import type {RecruitmentCardType ,UpdatePayload }  from "@/components/Interfaces/web/recruitmentCard";
-import { backendUrl } from "@/components/Hooks/web/env";
+import { backendUrl } from "@H/web/env";
 const socket = io(`${backendUrl}/list`);
 import { ref } from 'vue';
 export const RecruitmentCards = ref<RecruitmentCardType[]>([]); 

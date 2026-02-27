@@ -13,7 +13,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { generateId } from "@/components/Hooks/web/id";
+import { generateId } from "@H/web/id";
 import Tags from "@A/Organisms/Tags/Tags";
 import { ref, markRaw, reactive } from "vue";
 import { PopingElement } from "@A/Templetes/PopingElement/PopingElement";
@@ -23,9 +23,10 @@ import { type formItemType } from "@A/Molecules/FormItem/Interface";
 import { type RecruitmentCardType } from "@/components/Interfaces/web/recruitmentCard";
 import VariableList from "@/components/AtomicDesign/Molecules/VariableList/src/VariableList.vue";
 import { ElDatePicker } from "element-plus";
-import { recruitmentApi } from "@/components/Hooks/web/useRecruitmentData";
+import { recruitmentApi } from "@H/api/useRecruitmentData";
 import { useRouter } from "vue-router";
-import { useLocalStorage } from "@/components/Hooks/web/useLocalStorage";
+import { useLocalStorage } from "@H/web/useLocalStorage";
+import { display, data } from "@H/web/timeFormatting";
 const storage = useLocalStorage();
 const router = useRouter();
 // const recruitmentApi = null; //開発用
@@ -39,11 +40,12 @@ const formData: RecruitmentCardType = reactive({
   name: "",
   detail: "",
   tag: [],
-  time: "",
+  scheduledtimeString: "",
+  scheduledtime: 0,
   apo_people: 1,
   join_people: 0,
   id: generateId(),
-  data: 0,
+  cleatedData: 0,
 });
 
 const tagTrigger = (tag: string) => {
@@ -51,8 +53,10 @@ const tagTrigger = (tag: string) => {
 };
 
 const onEmitButton = () => {
-  console.log("soketEmit" + JSON.stringify(formData));
-  formData.data = Date.now();
+  formData.cleatedData = Date.now();
+  formData.scheduledtime = data(formData.scheduledtimeString);
+  formData.scheduledtimeString = display(formData.scheduledtimeString);
+  console.log(formData.scheduledtime);
   recruitmentApi.create(formData);
   storage.setItem("schedule", formData.id);
   router.push("/recruitment");
@@ -77,7 +81,7 @@ const fromConfig: formItemType[] = [
     },
     label: "時刻",
     component: ElDatePicker,
-    id: "time",
+    id: "scheduledtimeString",
     required: true,
   },
   {
@@ -104,7 +108,7 @@ const fromConfig: formItemType[] = [
 </script>
 <style scoped>
 .form {
-  width: 100%;
+  width: auto;
   height: auto;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   border-radius: 10px;

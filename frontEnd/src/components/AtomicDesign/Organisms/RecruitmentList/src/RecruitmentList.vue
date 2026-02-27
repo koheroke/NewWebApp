@@ -15,8 +15,8 @@
 import RecruitmentCard from "@A/Molecules/RecruitmentCard/src/RecruitmentCard.vue";
 import { type RecruitmentCardType } from "@/components/Interfaces/web/recruitmentCard";
 import { ref, computed } from "vue";
-import { sortingButtonType } from "@/components/Hooks/web/RecruitmentListHook";
-import { useLocalStorage } from "@/components/Hooks/web/useLocalStorage";
+import { sortingButtonType } from "@H/web/RecruitmentListHook";
+import { useLocalStorage } from "@H/web/useLocalStorage";
 import { useRouter } from "vue-router";
 const router = useRouter();
 const storage = useLocalStorage();
@@ -30,7 +30,7 @@ const scheduledIds = ref<string[]>(storage.getItem("schedule") || []);
 const ongoingIds = computed<string[]>(() => {
   const nowData = Date.now();
   return props.RecruitmentCards.filter((item: RecruitmentCardType) => {
-    return item.data <= nowData;
+    return item.scheduledtime <= nowData;
   }).map((item) => item.id);
 });
 

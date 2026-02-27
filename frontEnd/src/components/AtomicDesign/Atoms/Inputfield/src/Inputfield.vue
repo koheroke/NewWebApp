@@ -20,7 +20,7 @@ import {
   defaultConfig,
   type inputfromConfig,
   type ConfigKey,
-} from "@/components/Hooks/web/formConfig";
+} from "@H/web/formConfig";
 import "element-plus/dist/index.css";
 const propsData = defineProps<
   Partial<inputfromConfig> & { configType: ConfigKey }

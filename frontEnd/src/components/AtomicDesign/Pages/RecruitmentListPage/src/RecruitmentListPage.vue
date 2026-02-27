@@ -10,19 +10,21 @@
     </PopingElement>
     <div class="scroll-y">
       <div class="Gridlayout topArea">
-        <RadioButton
+        <Radio
           title=""
           :elements="listSwitch"
+          :buttonComponent="SIMRadioButton"
           v-model="RadioList_selected"
           class="menu"
-        ></RadioButton>
-        <div class="Gridlayout right-align-start">
-          <RadioButton
+        ></Radio>
+        <div class="Gridlayout right-align-start search">
+          <Radio
             title=""
+            :buttonComponent="SIMRadioButton"
             :elements="searchSwitch"
             v-model="RadioSearch_selected"
             class="radioButton"
-          ></RadioButton>
+          ></Radio>
           <Search
             v-model="fromData"
             configType="input"
@@ -44,16 +46,14 @@
 </template>
 <script lang="ts" setup>
 import RecruitmentList from "@A/Organisms/RecruitmentList/src/RecruitmentList.vue";
-import RadioButton from "@A/Molecules/RadioButton/RadioButton";
+import Radio from "@/components/AtomicDesign/Molecules/Radio/src/Radio.vue";
 import Search from "@A/Molecules/Search/Search";
 import { computed, ref, watch } from "vue";
 import Tags from "@A/Organisms/Tags/Tags";
 import PopingElement from "@A/Templetes/PopingElement/PopingElement";
-import { searchResults, andResults } from "@/components/Hooks/web/saerch";
-import {
-  RecruitmentCards,
-  recruitmentApi,
-} from "@/components/Hooks/web/useRecruitmentData";
+import { searchResults, andResults } from "@H/web/saerch";
+import SIMRadioButton from "@/components/AtomicDesign/Atoms/RadioButton/src/SIMRadioButton.vue";
+import { RecruitmentCards, recruitmentApi } from "@H/api/useRecruitmentData";
 
 // import { getTestData } from "@/testmodule/InputFromWebsocket";
 const notification = ref(false);
@@ -61,13 +61,13 @@ recruitmentApi.request();
 
 import Notification from "@A/Molecules/Notification/Notification";
 const listSwitch = [
-  { id: "new", name: "新着順" },
-  { id: "people", name: "人数順" },
-  { id: "data", name: "時刻順" },
+  { id: "new", title: "新着順" },
+  { id: "people", title: "人数順" },
+  { id: "data", title: "時刻順" },
 ];
 const searchSwitch = [
-  { id: "tag", name: "タグで検索" },
-  { id: "name", name: "名前で検索" },
+  { id: "tag", title: "タグで検索" },
+  { id: "name", title: "名前で検索" },
 ];
 
 const RadioSearch_selected = ref("tag");
@@ -81,9 +81,9 @@ const sortedBaseData = computed(() => {
     case "people":
       return base.sort((a, b) => b.apo_people - a.apo_people);
     case "data":
-      return base.sort((a, b) => a.data - b.data);
+      return base.sort((a, b) => a.scheduledtime - b.scheduledtime);
     case "new":
-      return base;
+      return base.sort((a, b) => a.cleatedData - b.cleatedData);
     default:
       return base;
   }
@@ -149,5 +149,8 @@ watch(
 }
 .tagArea {
   z-index: 10 !important;
+}
+.search {
+  gap: 5px;
 }
 </style>

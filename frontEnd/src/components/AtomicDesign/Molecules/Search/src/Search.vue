@@ -13,10 +13,7 @@
 </template>
 <script lang="ts" setup>
 import Inputfield from "@A/Atoms/Inputfield/Inputfield";
-import {
-  type inputfromConfig,
-  type ConfigKey,
-} from "@/components/Hooks/web/formConfig";
+import { type inputfromConfig, type ConfigKey } from "@H/web/formConfig";
 
 const fromConfig = defineProps<
   Partial<inputfromConfig> & { configType: ConfigKey }

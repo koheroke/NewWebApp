@@ -28,7 +28,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@A': path.resolve(__dirname,'./src/components/AtomicDesign') 
+      '@A': path.resolve(__dirname,'./src/components/AtomicDesign') ,
+      '@H': path.resolve(__dirname,'./src/components/Hooks') 
     },
   },
   

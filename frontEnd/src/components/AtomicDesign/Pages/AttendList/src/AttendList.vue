@@ -2,11 +2,11 @@
 import { ref, computed } from "vue";
 import Button from "@A/Atoms/Button/Button";
 import RecruitmentList from "@A/Organisms/RecruitmentList/src/RecruitmentList.vue";
-import { useLocalStorage } from "@/components/Hooks/web/useLocalStorage";
+import { useLocalStorage } from "@H/web/useLocalStorage";
 // import { getTestData } from "@/testmodule/InputFromWebsocket";
 import { type RecruitmentCardType } from "@/components/Interfaces/web/recruitmentCard";
 import Label from "@/components/AtomicDesign/Atoms/Label/src/Label.vue";
-import { RecruitmentCards } from "@/components/Hooks/web/useRecruitmentData";
+import { RecruitmentCards } from "@H/api/useRecruitmentData";
 const storage = useLocalStorage();
 // const hullData = getTestData();
 const textBool = ref(false);

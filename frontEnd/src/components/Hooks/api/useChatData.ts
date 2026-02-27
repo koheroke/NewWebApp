@@ -1,5 +1,5 @@
 import io from "socket.io-client"; 
-import { backendUrl } from "@/components/Hooks/web/env";
+import { backendUrl } from "@H/web/env";
 const socket = io(`${backendUrl}/chat`);
 socket.on("create", (data :string) => {  
 

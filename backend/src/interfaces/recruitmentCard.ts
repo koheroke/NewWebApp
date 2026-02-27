@@ -1,13 +1,14 @@
 import { type AtLeastOne } from "@/components/Interfaces/interface"
 export interface RecruitmentCardType{
   name: string,
-  time: string,
+  scheduledtimeString: string,
+  scheduledtime:number,
   apo_people: number,
   join_people: number,
   detail: string,
   tag: string[]
   id: string,
-  data: number
+  cleatedData: number
 }
 export type cardInList = Omit<RecruitmentCardType, 'apo_people' | 'join_people'>&{
    ButtonTitile: string,

@@ -16,7 +16,8 @@
     "baseUrl": "", 
     "paths": {
       "@/*": ["src/*"] ,
-      "@A/*": ["src/components/AtomicDesign/*"]
+      "@A/*": ["src/components/AtomicDesign/*"],      
+      "@H/*": ["src/components/Hooks/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "src/components/AtomicDesign/Organisms/sendMessageBar"]

@@ -1,14 +1,15 @@
 <template>
   <div class="Gridlayout border">
-    <Label label="サイト名ロゴ" class="title"></Label>
+    <Label label="サイト名を記入" class="title"></Label>
     <div class="pageTransitionButtons Gridlayout">
       <Label label="MENU" class=""></Label>
-      <RadioButton
+      <Radio
         title=""
         :elements="topMenu"
         :onClick="handleSubmit"
+        :buttonComponent="RadioButton"
         class="RadioButton"
-      ></RadioButton>
+      ></Radio>
     </div>
     <Button title="ログイン" class="right-align-start"></Button>
   </div>
@@ -17,13 +18,13 @@
 import Button from "@A/Atoms/Button/Button";
 import Label from "@A/Atoms/Label/Label";
 import { useRouter } from "vue-router";
-import RadioButton from "@A/Molecules/RadioButton/RadioButton";
+import Radio from "@A/Molecules/Radio/Radio";
+import RadioButton from "@/components/AtomicDesign/Atoms/RadioButton/src/RadioButton.vue";
 
-import { ElRadio, ElRadioGroup } from "element-plus";
 const topMenu = [
-  { id: "recruitment", name: "募集一覧" },
-  { id: "create", name: "募集作成" },
-  { id: "AttendList", name: "参加予定" },
+  { id: "recruitment", title: "募集一覧" },
+  { id: "create", title: "募集作成" },
+  { id: "AttendList", title: "参加予定" },
 ];
 
 const router = useRouter();

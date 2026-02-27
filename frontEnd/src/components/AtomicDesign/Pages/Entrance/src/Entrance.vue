@@ -5,7 +5,19 @@
       class="title"
       :class="{ moveTitle: moveing }"
     ></Label>
-    <div></div>
+    <div>
+      <Button
+        title="ログインして始める"
+        @click="onButton()"
+        class="startButton"
+        :class="{ fadeInAnm: moveing }"
+      ></Button>
+      <Button
+        title="ログインせず始める"
+        @click="onButton()"
+        :class="{ fadeInAnm: moveing }"
+      ></Button>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -13,7 +25,12 @@ import Inputfield from "@A/Atoms/Inputfield/Inputfield";
 import Button from "@A/Atoms/Button/Button.ts";
 import Label from "@A/Atoms/Label/Label";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
 const moveing = ref(false);
+const onButton = () => {
+  router.push("/recruitment");
+};
 
 setTimeout(() => {
   moveing.value = true;
@@ -32,5 +49,11 @@ setTimeout(() => {
 .login {
   font-size: 20px;
   font-weight: 600;
+}
+.startButton {
+  font-size: 90px;
+  font-weight: 600;
+  color: white;
+  -webkit-text-stroke: 1px #13bac6; /* 枠線の太さと色 */
 }
 </style>
