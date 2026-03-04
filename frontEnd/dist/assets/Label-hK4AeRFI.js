@@ -1,0 +1,1 @@
+import{d as a,o as s,b as t,$ as o,_ as c}from"./index-C3CNUYPG.js";const n={class:"label"},l=a({__name:"Label",props:{label:String},setup(e){return(_,r)=>(s(),t("div",n,o(e.label),1))}}),i=c(l,[["__scopeId","data-v-fa18cc28"]]);export{i as L};

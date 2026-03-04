@@ -1,4 +1,4 @@
-import { type AtLeastOne } from "@/components/Interfaces/interface"
+import { type AtLeastOne } from "@/interfaces/interfase"
 export interface RecruitmentCardType{
   name: string,
   scheduledtimeString: string,

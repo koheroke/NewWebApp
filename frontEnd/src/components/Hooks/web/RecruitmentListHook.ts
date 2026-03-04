@@ -1,5 +1,5 @@
-import {type RecruitmentCardType } from "@/components/Interfaces/web/recruitmentCard"
-import type { cardInList } from "@/components/Interfaces/web/recruitmentCard";
+import {type RecruitmentCardType } from "@I/web/recruitmentCard"
+import type { cardInList } from "@I/web/recruitmentCard";
 
 export const sortingButtonType = (
   scheduledIds: string[], 

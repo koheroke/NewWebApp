@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import {type AtLeastOne} from "@/components/Interfaces/interface"
-import { type User,type userKeys } from "@/components/Interfaces/web/UserInterface"
+import {type AtLeastOne} from "@I/interface"
+import { type User,type userKeys } from "@I/web/UserInterface"
 export const user = defineStore('user',{
   state: ():User => ({
       id:"",

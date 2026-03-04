@@ -1,8 +1,6 @@
-import {type RecruitmentCardType} from "@/components/Interfaces/web/recruitmentCard"
-
 export interface formItemType {
   props: { [key: string]: any };
-  id: keyof RecruitmentCardType;
+  id: string;
   component: string | any;
   label: string;
   required: boolean;

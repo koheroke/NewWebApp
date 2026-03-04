@@ -1,26 +1,30 @@
 <template>
-  <div class="Gridlayout">
-    <el-icon :size="20" color="#409efc">
-      <Edit />
-    </el-icon>
-    <Label :label="formConfig.label" class="formConfigtitle"></Label>
-    <Label
-      :label="required"
-      :class="['formLabel gradient', { notFilledin: alert }]"
-    ></Label>
-    <div class="list">
-      <component
-        :is="formConfig.component"
-        v-model="fromData"
-        v-bind="formConfig.props"
-        @focus="onFocus"
-        class="component"
-      />
-      <Label
-        label="!記入が必要です"
-        v-show="alert"
-        class="caveat left-align-start"
-      ></Label>
+  <div class="list">
+    <div class="Gridlayout">
+      <el-icon :size="20" color="#409efc">
+        <Edit />
+      </el-icon>
+      <div class="list inputArea">
+        <div class="Gridlayout">
+          <Label
+            :label="required"
+            :class="['formLabel Importance', { notFilledin: alert }]"
+          ></Label>
+          <Label :label="formConfig.label" class="formConfigtitle"></Label>
+        </div>
+        <component
+          :is="formConfig.component"
+          v-model="fromData"
+          v-bind="formConfig.props"
+          @focus="onFocus"
+          class="component"
+        />
+        <Label
+          label="!記入が必要です"
+          v-show="alert"
+          class="caveat left-align-start"
+        ></Label>
+      </div>
     </div>
   </div>
 </template>
@@ -70,9 +74,12 @@ defineExpose({
 }
 
 .notFilledin {
-  background: #ff0000 !important;
-  background: fixed;
+  background-color: #ff0000 !important;
   color: white;
+}
+.Importance {
+  background-color: rgba(255, 255, 255, 0.083);
+  border: 1px solid rgb(230, 227, 227);
 }
 .caveat {
   margin-left: 20px !important;
@@ -88,5 +95,11 @@ defineExpose({
 }
 .formConfigtitle {
   color: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  font-weight: 600 !important;
+}
+.inputArea {
+  margin: 5px;
+  width: 100%;
+  gap: 5px !important;
 }
 </style>

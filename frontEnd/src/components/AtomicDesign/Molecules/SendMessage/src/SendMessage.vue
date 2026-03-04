@@ -19,12 +19,13 @@
           <el-icon
             :size="22"
             color="white"
-            @mouseenter="isFilled = true"
-            @mouseleave="isFilled = false"
+            @mouseenter="postPossible = true"
+            @mouseleave="postPossible = false"
             class="postButton right-align-start"
+            @click="socket"
           >
-            <i-ep-Promotion v-show="isFilled"></i-ep-Promotion>
-            <i-ep-Position v-show="!isFilled"></i-ep-Position>
+            <i-ep-Promotion v-show="postPossible"></i-ep-Promotion>
+            <i-ep-Position v-show="!postPossible"></i-ep-Position>
           </el-icon>
         </div>
       </div>
@@ -32,11 +33,26 @@
   </div>
 </template>
 <script lang="ts" setup>
-import PreviewImages from "@/components/AtomicDesign/Organisms/PreviewImages/src/PreviewImages.vue";
+import PreviewImages from "@A/Organisms/PreviewImages/src/PreviewImages.vue";
 import Inputfield from "@A/Atoms/Inputfield/Inputfield";
-import { ref } from "vue";
+import { imageHook } from "@/components/Hooks/web/ImageHook";
+import { ref, computed } from "vue";
+import { uploadImage } from "@H/api/useRest";
 const inputData = ref<string>("");
-const isFilled = ref(true);
+const postPossible = computed(() => {
+  if (imageHook.images.length == 0 && inputData.value == "") {
+    return false;
+  } else {
+    return true;
+  }
+});
+const socket = async () => {
+  if (postPossible.value) {
+    const files = imageHook.images.map((item) => item.data);
+    const restUrl = await uploadImage(files);
+    console.log("restUrl", restUrl);
+  }
+};
 </script>
 <style scoped>
 .parent {

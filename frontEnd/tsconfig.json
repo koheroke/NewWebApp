@@ -9,8 +9,9 @@
     "paths": {
       "@/*": ["src/*"],
       "@A/*": ["src/components/AtomicDesign/*"],
-      "@H/*": ["src/components/Hooks/*"]
-
+      "@H/*": ["src/components/Hooks/*"],
+      "@R/*": ["src/components/Routers/*"],      
+      "@I/*": ["src/components/Interfaces/*"]
     },
   }
 }

@@ -15,10 +15,10 @@
   </div>
 </template>
 <script lang="ts" setup>
-import Label from "@/components/AtomicDesign/Atoms/Label/src/Label.vue";
-import Textbox from "@/components/AtomicDesign/Atoms/Textbox/src/Textbox.vue";
+import Label from "@A/Atoms/Label/src/Label.vue";
+import Textbox from "@A/Atoms/Textbox/src/Textbox.vue";
 import { ref } from "vue";
-import { type postBox } from "@/components/Interfaces/web/post";
+import { type postBox } from "@I/web/post";
 const boxProps = defineProps<postBox>();
 const data = ref(String(boxProps.createdAt));
 </script>

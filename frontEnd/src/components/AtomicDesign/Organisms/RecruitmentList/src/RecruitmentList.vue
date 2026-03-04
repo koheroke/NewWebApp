@@ -13,7 +13,7 @@
 </template>
 <script lang="ts" setup>
 import RecruitmentCard from "@A/Molecules/RecruitmentCard/src/RecruitmentCard.vue";
-import { type RecruitmentCardType } from "@/components/Interfaces/web/recruitmentCard";
+import { type RecruitmentCardType } from "@I/web/recruitmentCard";
 import { ref, computed } from "vue";
 import { sortingButtonType } from "@H/web/RecruitmentListHook";
 import { useLocalStorage } from "@H/web/useLocalStorage";

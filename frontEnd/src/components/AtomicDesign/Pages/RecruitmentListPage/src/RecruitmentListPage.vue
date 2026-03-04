@@ -46,13 +46,13 @@
 </template>
 <script lang="ts" setup>
 import RecruitmentList from "@A/Organisms/RecruitmentList/src/RecruitmentList.vue";
-import Radio from "@/components/AtomicDesign/Molecules/Radio/src/Radio.vue";
+import Radio from "@A/Molecules/Radio/src/Radio.vue";
 import Search from "@A/Molecules/Search/Search";
 import { computed, ref, watch } from "vue";
 import Tags from "@A/Organisms/Tags/Tags";
 import PopingElement from "@A/Templetes/PopingElement/PopingElement";
 import { searchResults, andResults } from "@H/web/saerch";
-import SIMRadioButton from "@/components/AtomicDesign/Atoms/RadioButton/src/SIMRadioButton.vue";
+import SIMRadioButton from "@A/Atoms/RadioButton/src/SIMRadioButton.vue";
 import { RecruitmentCards, recruitmentApi } from "@H/api/useRecruitmentData";
 
 // import { getTestData } from "@/testmodule/InputFromWebsocket";

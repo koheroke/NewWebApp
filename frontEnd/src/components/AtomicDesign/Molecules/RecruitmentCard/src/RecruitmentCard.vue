@@ -74,7 +74,7 @@
 import Button from "@A/Atoms/Button/Button";
 import Label from "@A/Atoms/Label/Label";
 
-import type { cardInList } from "@/components/Interfaces/web/recruitmentCard";
+import type { cardInList } from "@I/web/recruitmentCard";
 const props = defineProps<{
   clickJoinButton: (id: string, buttontitile: string) => void;
   recruitmentListData: cardInList;

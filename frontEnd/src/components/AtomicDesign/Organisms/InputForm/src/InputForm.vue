@@ -13,7 +13,7 @@
         ></formItem>
       </div>
       <Button
-        title="投稿"
+        title="送信"
         @click="onPost()"
         class="radius gradient postButton"
       ></Button>
@@ -23,14 +23,13 @@
 <script lang="ts" setup>
 import { type formItemType } from "@A/Molecules/FormItem/Interface";
 import formItem from "@A/Molecules/FormItem/FormItem";
-import Button from "@/components/AtomicDesign/Atoms/Button/Button";
+import Button from "@A/Atoms/Button/Button";
 import { ref, onBeforeUpdate } from "vue";
-import { type RecruitmentCardType } from "@/components/Interfaces/web/recruitmentCard";
 const props = defineProps<{
   configList: formItemType[];
   onEmitButton: () => void;
 }>();
-const fromData = defineModel<RecruitmentCardType>({ required: true });
+const fromData = defineModel<any>({ required: true });
 const itemRefs = ref<any[]>([]);
 
 onBeforeUpdate(() => {
@@ -46,7 +45,7 @@ const onPost = () => {
 </script>
 <style scoped>
 .list {
-  gap: 50px;
+  gap: 20px;
   width: 90%;
 }
 .form {
@@ -60,7 +59,8 @@ const onPost = () => {
   border-radius: 10px;
 }
 .formItem {
-  background-color: rgb(244, 244, 244) !important;
+  background-color: rgba(255, 255, 255, 0.083) !important;
+  border: 1px solid rgb(230, 227, 227);
 }
 .label {
   margin: 10px;

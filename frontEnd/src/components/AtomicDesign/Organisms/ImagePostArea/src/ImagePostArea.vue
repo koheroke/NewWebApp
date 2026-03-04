@@ -11,7 +11,6 @@
 import Label from "@A/Atoms/Label/Label";
 import { ref, computed } from "vue";
 import { imageHook, type postimage } from "@H/web/ImageHook";
-const images = defineModel();
 const prop = defineProps<{
   title: string | undefined;
   dragBool: boolean;

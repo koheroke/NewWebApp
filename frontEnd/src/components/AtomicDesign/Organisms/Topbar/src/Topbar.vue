@@ -11,7 +11,18 @@
         class="RadioButton"
       ></Radio>
     </div>
-    <Button title="ログイン" class="right-align-start"></Button>
+    <div class="Gridlayout right-align-start buttons">
+      <Button
+        title="登録"
+        class="entryButton button"
+        @click="handleSubmit('entry')"
+      ></Button>
+      <Button
+        title="ログイン"
+        class="loginButton button"
+        @click="handleSubmit('login')"
+      ></Button>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -19,7 +30,7 @@ import Button from "@A/Atoms/Button/Button";
 import Label from "@A/Atoms/Label/Label";
 import { useRouter } from "vue-router";
 import Radio from "@A/Molecules/Radio/Radio";
-import RadioButton from "@/components/AtomicDesign/Atoms/RadioButton/src/RadioButton.vue";
+import RadioButton from "@A/Atoms/RadioButton/src/RadioButton.vue";
 
 const topMenu = [
   { id: "recruitment", title: "募集一覧" },
@@ -42,12 +53,35 @@ const handleSubmit = (id: String) => {
     case "heldList":
       router.push("/heldList");
       break;
+    case "login":
+      router.push("/login");
+      break;
+    case "entry":
+      router.push("/entry");
+      break;
     default:
       break;
   }
 };
 </script>
 <style scoped>
+.buttons {
+  gap: 5px;
+  align-items: center;
+  height: auto;
+}
+.button {
+  padding: 4px 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(26, 13, 98, 0.274);
+  font-size: 17px;
+  transition: 0.2s background-color;
+  box-shadow: 10px 5px 35px -5px rgba(7, 37, 63, 0.4);
+}
+
+.button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
 .pageTransitionButtons {
   font-weight: 900;
   padding-top: 20px;

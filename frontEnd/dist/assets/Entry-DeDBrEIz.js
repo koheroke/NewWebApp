@@ -1,0 +1,1 @@
+import{_ as o,b as t,e as c,r as n,o as r}from"./index-C3CNUYPG.js";const s={},a={class:"page"};function _(i,p){const e=n("RouterView");return r(),t("div",a,[c(e)])}const f=o(s,[["render",_]]);export{f as Entry,f as default};

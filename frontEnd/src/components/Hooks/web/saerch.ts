@@ -1,4 +1,4 @@
-import {type RecruitmentCardType} from "@/components/Interfaces/web/recruitmentCard"
+import {type RecruitmentCardType} from "@I/web/recruitmentCard"
 export const searchResults = (data:RecruitmentCardType[],searchKeyword: string) => data.filter(item => 
   item.name.includes(searchKeyword)
 );

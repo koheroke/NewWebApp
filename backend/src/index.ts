@@ -2,6 +2,7 @@ import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 import { Server } from 'socket.io'
 import { registerSocketHandlers } from '@/app/socket'
+import { uploadCloud } from '@/app/uploadCloud'
 import { serveStatic } from '@hono/node-server/serve-static' 
 const app = new Hono()
 app.use("/assets/*", serveStatic({ root: "../frontEnd/dist" }));
@@ -20,3 +21,4 @@ const io = new Server(server,{
 
 })
 registerSocketHandlers(io)
+uploadCloud(app)

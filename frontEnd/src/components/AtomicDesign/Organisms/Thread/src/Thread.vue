@@ -6,8 +6,8 @@
   </div>
 </template>
 <script lang="ts" setup>
-import PostBox from "@/components/AtomicDesign/Molecules/PostBox/src/PostBox.vue";
-import { type postBox } from "@/components/Interfaces/web/post";
+import PostBox from "@A/Molecules/PostBox/src/PostBox.vue";
+import { type postBox } from "@I/web/post";
 const theadDatas = defineProps<{ postdatas: postBox[] }>();
 </script>
 <style scoped>

@@ -1,4 +1,4 @@
-import {type postBox} from "@/components/Interfaces/web/post"
+import {type postBox} from "@I/web/post"
 
  const postdatas: postBox[] = [
   { content: 'こんにちは！', type: 'text', clientMessageId: 'chat_01', createdAt: 1771128000000 },

@@ -17,7 +17,9 @@
     "paths": {
       "@/*": ["src/*"] ,
       "@A/*": ["src/components/AtomicDesign/*"],      
-      "@H/*": ["src/components/Hooks/*"]
+      "@H/*": ["src/components/Hooks/*"],
+      "@R/*": ["src/components/Routers/*"],      
+      "@I/*": ["src/components/Interfaces/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "src/components/AtomicDesign/Organisms/sendMessageBar"]

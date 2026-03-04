@@ -29,7 +29,9 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@A': path.resolve(__dirname,'./src/components/AtomicDesign') ,
-      '@H': path.resolve(__dirname,'./src/components/Hooks') 
+      '@H': path.resolve(__dirname,'./src/components/Hooks') ,
+      '@R': path.resolve(__dirname,'./src/components/Routers'), 
+      '@I': path.resolve(__dirname,'./src/components/Interfaces') 
     },
   },
   

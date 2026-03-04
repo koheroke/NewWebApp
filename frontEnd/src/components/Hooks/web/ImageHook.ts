@@ -1,7 +1,7 @@
-import { reactive } from 'vue';
+import { reactive ,ref} from 'vue';
 export interface postimage{
   id:string
-  data:File
+  data:File 
 }
 export interface previewimage{
   id:string
@@ -10,6 +10,7 @@ export interface previewimage{
 class ImageHook{
   public images = reactive<postimage[]>([]);
   public previewImages = reactive<previewimage[]>([]);
+  public viewerImage = ref<File|undefined>(undefined);
   public maxSize: number = 5 * 1024 * 1024;
   public imageSize: number = 200;
 
@@ -29,6 +30,12 @@ class ImageHook{
     }
   return true;
   }
+  public getImages(id:string[],images:postimage[]|previewimage[]):(postimage|previewimage)[]{
+    return images.filter((image)=>id.includes(image.id))
+  }
+  public getImage(id:string,images:postimage[]|previewimage[]):postimage|previewimage|undefined{
+    return images.find((image)=>image.id===id)
+  }
   public removePreviewImageURL(id: string) {
   const index = this.previewImages.findIndex((image) => image.id === id);
   if (index !== -1) {
@@ -39,6 +46,7 @@ class ImageHook{
     this.images.splice(index, 1);
   }
 }
+
   public createPreviewImage(image:File): Promise<string | null>{
     return new Promise((resolve, reject) => {
     const reader = new FileReader();

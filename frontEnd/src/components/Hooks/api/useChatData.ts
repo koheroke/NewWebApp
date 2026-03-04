@@ -8,4 +8,11 @@ export class ChatApi{
   onChat(userID:string){
     socket.emit("joinchat",userID)
   }
+  sendMessage(userID:string,message:string){
+    socket.emit("joinchat",userID)
+  }
+  sendImage(userID:string,image:string){
+    socket.emit("joinchat",userID)
+  }
 }
+

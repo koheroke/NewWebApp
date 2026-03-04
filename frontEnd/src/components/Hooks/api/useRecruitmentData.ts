@@ -1,5 +1,5 @@
 import io from "socket.io-client"; 
-import type {RecruitmentCardType ,UpdatePayload }  from "@/components/Interfaces/web/recruitmentCard";
+import type {RecruitmentCardType ,UpdatePayload }  from "@I/web/recruitmentCard";
 import { backendUrl } from "@H/web/env";
 const socket = io(`${backendUrl}/list`);
 import { ref } from 'vue';

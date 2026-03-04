@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "forward-chess-452606-p3",
+  "private_key_id": "bbf99c534ad822f939dc91f2a71ebf6973cc144f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC02Nn97jz7HTvd\n1J6W4/DYiES3HSb8L7RxfoA0C8T33DkHxOD3XCG27I6SgmEap6dE/K1IUN/rsRXs\nDq5s0UTE10eaB8i4EYwSmouA2cH7jfJe5hhslMwO71IwjKJ0R7wD6CCR+SrmGf2H\nIyqG9162LErKSQItrE5CP7NhCm+DP+UVbH7zndLAIN17dWmKfOBtO1alqc68flF1\nSBWKkSBJB6wd84afOVGz7SQMQfD3b7oi3s7Giss6Ot18javmlKhlu3XTIFfUd1RH\nYP3KbFdHCYVTyewMyYq77ATFlmQ07kD9h+5c54Yms19Dl+q5to+MQOA5Xk+pUlOH\nOL+stchfAgMBAAECggEAKOIC+dhDOeOEdqQLzAGwn0rC+gBhoU4phSS7V8i3WO8U\nh3CXCORvjLpSisVlrVBsTHiwtbHuxQnt8kTpYpk2aidevO/4jMAOwd/lHJZdt4AB\n5DkxGU7UCKZKlsYcLZxP4TQ3NLi23XjPqx6kjQlcBGPj7nHtx6R1tp1O8GebCPjl\nh/4jnhvmtlSPqkPZ6JNDmcYlkclnAqAZBkWVj6mPN8zv5+5WoNpJfLJ3aHS9MXSE\nBsSaMVPBPJkX9KyDr/T/9r8sJkTpQGPIK+nbUXteAjNiLBMQKtVwTfcpNE6MG1TN\nuzfN7+BET5nN8QFVU02Qdq94rxv6xDqWBpHKWf7oGQKBgQDuLQlS1Jp2kC8ORPyi\nlC2t45rAR7HyRU8h0Gu+PY+Xc66dLvxihMfArRrEgIOsTzlH4OMxL2AL1X7XWvcG\nvhNZ9i83rSs9bN9wyG3zW/JHo+Gsz9fF9IYeCTBlizPvvVLijfZ+VrXkH/UCVc9p\n1GB/g7A1Y6tLmhLvLMNHco2Y1wKBgQDCYYL7QFO8xiXfKhu1Wxz9WgBlBNEQcxZY\nPC5yLtfTF9pUQFH+eXsOOS7MQCuMRHKWPtPDBLoGka479b41Ua/U/kWL9SAX635X\nHcVKQUwQY0a8Cj6SDpgFbAtWLkjovbXOE4wPoz/pM5/UdgQuHhMIMWoM8dXsB3ux\nKB58zRyzuQKBgQDUtu5DxtMpHr6X7O8AuHxPeB5GqgF4EYSJ+52ua0aqCcwiX8tS\npanNIAzvAKQYqSzMUEI4NEqAZy2AYqKKqAmaZ+9lt0gN9QVdsfPYy/6HEwtDjuDz\nz95URvqtRfSdoaW75vQFg6WxVwU4D7FNoDqKx+8Az8I1pCZS69SAJAPoQwKBgFCX\nZVsOnKlT7jfMmZhjom1Yd3lqudN8I/OJYChvS4R2C0uLL3O2olKPWtvMb0HEz02D\n1wCwYQCAPiEWDjrFF4XTtroEc733IXa1HStgT00sHBOym6aq7lSxKzIcFpaIsWwz\npoqFQOZLRSUtmSYVygZHlpSvX+ZwY9RbsehEknXhAoGADamE0uGkeSeP6JPPUS+0\nLQ/ki6simUfyU32R2uLQ73Fk56dKX48wNj6R8lu5XLhXZmdkdhVxTkup40ktL3h3\n0nQ1rPGDKjEdod5qD6xJk103BlAT8Vklu/Pi4IWbJ6Dm0v0G9GaA/ZmjaUnzdQq5\nqcFBn2aZzSCH8lMJCBWg2MU=\n-----END PRIVATE KEY-----\n",
+  "client_email": "storage-uploader@forward-chess-452606-p3.iam.gserviceaccount.com",
+  "client_id": "106685744695712497160",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/storage-uploader%40forward-chess-452606-p3.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

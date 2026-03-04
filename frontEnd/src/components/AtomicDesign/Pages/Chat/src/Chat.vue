@@ -6,6 +6,17 @@
     @dragleave.prevent="onDragLeave"
     @drop.prevent="onDrop"
   >
+    <ImagePostArea
+      :title="schedules.title"
+      :dragBool="dragBool"
+      clickPreview
+    ></ImagePostArea>
+    <div
+      class="ImageViewer absoluteCenter"
+      v-if="imageHook.viewerImage.value != undefined"
+    >
+      <ImageViewer :image="imageHook.viewerImage.value"></ImageViewer>
+    </div>
     <ChatTopBar v-bind="schedules"></ChatTopBar>
     <div class="main scroll-y">
       <div class="thread">
@@ -21,14 +32,18 @@
 </template>
 <script lang="ts" setup>
 import sendMessageBar from "@A/Organisms/sendMessageBar/sendMessageBar";
-import Thread from "@/components/AtomicDesign/Organisms/Thread/src/Thread.vue";
+import ImagePostArea from "@A/Organisms/ImagePostArea/ImagePostArea";
+import Thread from "@A/Organisms/Thread/src/Thread.vue";
 import { getAllData } from "@/testmodule/chat";
-import { type postBox } from "@/components/Interfaces/web/post";
-import ChatTopBar from "@/components/AtomicDesign/Organisms/ChatTopBar/src/ChatTopBar.vue";
+import { type postBox } from "@I/web/post";
+import ChatTopBar from "@A/Organisms/ChatTopBar/src/ChatTopBar.vue";
 import { useRoute } from "vue-router";
 import { computed, ref } from "vue";
 import { RecruitmentCards } from "@H/api/useRecruitmentData";
+import { imageHook } from "@/components/Hooks/web/ImageHook";
+import ImageViewer from "@A/Organisms/ImageViewer/ImageViewer";
 let dragCounter = 0;
+const fromData = defineModel();
 const dragBool = ref(false);
 const onDragEnter = () => {
   dragCounter++;
@@ -54,7 +69,6 @@ const schedules = computed(() => {
   if (!chatId.value) return { title: "なし", people: 0 };
   const card = RecruitmentCards.value.find((item) => item.id === chatId.value);
   return {
-    dragBool: dragBool.value,
     title: card?.name,
     people: card?.apo_people,
   };
@@ -77,5 +91,11 @@ const postdatas: postBox[] = getAllData();
   box-sizing: border-box;
   display: flex;
   justify-content: center;
+}
+.ImageViewer {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  z-index: 30;
 }
 </style>
